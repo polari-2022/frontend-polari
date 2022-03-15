@@ -1,8 +1,37 @@
+import { useState } from "react";
+import { green } from "tailwindcss/colors";
+import { usePasswordValidation } from "../hooks/usePasswordValidation";
+
 export default function Signup() {
+
+    const [password, setPassword] = useState({
+        firstPassword: "",
+        confirmPassword: "",
+    });
+
+    const [
+        validLength,
+        hasNumber,
+        upperCase,
+        match,
+        specialChar,
+    ] = usePasswordValidation({
+        firstPassword: password.firstPassword,
+        confirmPassword: password.confirmPassword,
+    });
+
+    const setFirst = (event) => {
+        setPassword({ ...password, firstPassword: event.target.value });
+    };
+    const setConfirm = (event) => {
+        setPassword({ ...password, confirmPassword: event.target.value });
+    };
+
+
     return (
         <>
             {/* Signup Section */}
-            <div className="min-h-full flex flex-col justify-center py-12 sm:px-6 lg:px-8">
+            <div className="min-h-full flex flex-col justify-center py-12 mt-4 sm:px-6 lg:px-8">
                 {/* Heading */}
                 <div className="sm:mx-auto sm:w-full sm:max-w-md">
                     {/* Logo */}
@@ -15,7 +44,7 @@ export default function Signup() {
                     <p className="mt-2 text-center text-sm text-gray-600">
                         Or{' '}
                         <a href="/login" className="font-medium text-emerald-600 hover:text-emerald-500">
-                            log in 
+                            log in
                         </a>
                         {' '}here
                     </p>
@@ -52,6 +81,7 @@ export default function Signup() {
                                         id="password"
                                         name="password"
                                         type="password"
+                                        onChange={setFirst}
                                         autoComplete="current-password"
                                         required
                                         className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-emerald-500 focus:border-emerald-500 sm:text-sm"
@@ -69,11 +99,25 @@ export default function Signup() {
                                         id="confirm-password"
                                         name="confirm-password"
                                         type="password"
+                                        onChange={setConfirm}
                                         autoComplete="current-password"
                                         required
                                         className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-emerald-500 focus:border-emerald-500 sm:text-sm"
                                     />
                                 </div>
+                            </div>
+
+                            <div className="flex flex-col">
+                                <div className="flex justify-evenly mb-4">
+                                    <span className={validLength ? "text-emerald-500" : "text-red-500"}>Valid Length</span>
+                                    <span className={hasNumber ? "text-emerald-500" : "text-red-500"}>Has a Number</span>
+                                    <span className={upperCase ? "text-emerald-500" : "text-red-500"}>Upper Case</span>
+                                </div>
+                                <div className="flex justify-evenly mb-4">
+                                    <span className={specialChar ? "text-emerald-500" : "text-red-500"}>Special Character</span>
+                                    <span className={match ? "text-emerald-500" : "text-red-500"}>Passwords Match</span>
+                                </div>
+
                             </div>
 
                             {/* Remember me */}
