@@ -1,14 +1,14 @@
 export default function Header() {
     return (
         <>
-      <div className="relative bg-indigo-800">
+      <div className="relative bg-teal-700">
         <div className="absolute inset-0">
           <img
-            className="w-full h-full object-cover"
-            src="https://images.unsplash.com/photo-1525130413817-d45c1d127c42?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1920&q=60&&sat=-100"
+            className="w-full h-full object-cover object-top"
+            src="https://images.unsplash.com/photo-1596529840530-83900a28cfc3?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
             alt=""
           />
-          <div className="absolute inset-0 bg-slate-500 mix-blend-multiply" aria-hidden="true" />
+          <div className="absolute inset-0 " aria-hidden="true" />
         </div>
         <div className="relative max-w-7xl mx-auto py-24 px-4 sm:py-32 sm:px-6 lg:px-8">
           <h1 className="text-4xl font-extrabold tracking-tight text-white sm:text-5xl lg:text-6xl">Polari</h1>

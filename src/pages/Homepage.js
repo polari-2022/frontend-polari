@@ -46,7 +46,7 @@ export default function Homepage() {
                                     <div className="aspect-w-12 aspect-h-7 lg:aspect-none">
                                         <img
                                             className="rounded-lg shadow-lg object-cover object-center"
-                                            src="https://images.unsplash.com/photo-1546913199-55e06682967e?ixlib=rb-1.2.1&auto=format&fit=crop&crop=focalpoint&fp-x=.735&fp-y=.55&w=1184&h=1376&q=80"
+                                            src="https://images.unsplash.com/photo-1596571316993-49bfe3ead7f1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80"
                                             alt="Whitney leaning against a railing on a downtown street"
                                             width={1184}
                                             height={1376}
