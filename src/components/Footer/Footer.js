@@ -2,8 +2,8 @@
 const navigation = {
     main: [
       { name: 'Attachment Styles', href: '/attachment-styles' },
-      { name: 'Our Team', href: '/our-team' },
       { name: 'Contact Us', href: '/contact-us' },
+      { name: 'Our Team', href: '/our-team' },
       { name: 'Log in', href: '/login' },
       { name: 'Sign up', href: '/signup' },
     ],
@@ -44,7 +44,7 @@ const navigation = {
           <nav className="-mx-5 -my-2 flex flex-wrap justify-center" aria-label="Footer">
             {navigation.main.map((item) => (
               <div key={item.name} className="px-5 py-2">
-                <a target="_blank" rel="noreferrer" href={item.href} className="text-base text-gray-500 hover:text-gray-900">
+                <a rel="noreferrer" href={item.href} className="text-base text-gray-500 hover:text-gray-900">
                   {item.name}
                 </a>
               </div>
