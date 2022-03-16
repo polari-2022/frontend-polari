@@ -6,6 +6,7 @@ import Homepage from './pages/Homepage'
 import Attachments from './pages/Attachments'
 import Login from '../src/pages/Login'
 import Signup from '../src/pages/Signup'
+import Footer from './components/Footer/Footer'
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Route path='/login' element={<Login />} />
         <Route path='/signup' element={<Signup />} />
       </Routes>
+      <Footer />
     </div>
   );
 }
