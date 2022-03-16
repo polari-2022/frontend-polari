@@ -1,5 +1,5 @@
 import Header from '../components/Header/Header'
-// import { CameraIcon } from '@heroicons/react/solid'
+import { CameraIcon } from '@heroicons/react/solid'
 
 export default function Homepage() {
     return (
@@ -36,7 +36,7 @@ export default function Homepage() {
                                         height={20}
                                         patternUnits="userSpaceOnUse"
                                     >
-                                        <rect x={0} y={0} width={4} height={4} className="text-gray-200" fill="currentColor" />
+                                        <rect x={0} y={0} width={4} height={4} className="text-emerald-100" fill="currentColor" />
                                     </pattern>
                                 </defs>
                                 <rect width={404} height={384} fill="url(#de316486-4a29-4312-bdfc-fbce2132a2c1)" />
@@ -52,10 +52,10 @@ export default function Homepage() {
                                             height={1376}
                                         />
                                     </div>
-                                    {/* <figcaption className="mt-3 flex text-sm text-gray-500"> */}
-                                        {/* <CameraIcon className="flex-none w-5 h-5 text-gray-400" aria-hidden="true" /> */}
-                                        {/* <span className="ml-2">Photograph by Marcus O’Leary</span> */}
-                                    {/* </figcaption> */}
+                                    <figcaption className="mt-3 flex text-sm text-gray-500">
+                                        <CameraIcon className="flex-none w-5 h-5 text-gray-400" aria-hidden="true" />
+                                        <span className="ml-2" ><a className='hover:text-teal-400 no-underline text-gray-500' target="_blank" rel="noreferrer" href="https://unsplash.com/@bluespit">Photograph by Shingi Rice</a> </span>
+                                    </figcaption>
                                 </figure>
                             </div>
                         </div>
@@ -81,7 +81,7 @@ export default function Homepage() {
                                     Polari is an inclusive dating app and safe space for the LGBTQIA+ community. Our goal is to provide you with a place where you can express yourself freely, without any judgement or bias.
                                 </p>
                                 <p>
-                                    We encourage you to discuss your attachment style with your partner to grow together as a team for all kinds of relationships, casual or serious.
+                                    We encourage you to discuss your attachment style with your matches to grow together as a team for all kinds of relationships, casual or serious.
                                 </p>
                             </div>
                         </div>
