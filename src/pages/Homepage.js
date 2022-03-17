@@ -76,7 +76,7 @@ export default function Homepage() {
                                     We are a community focused on helping you learn to foster healthy relationships through identifying your attachment style, and matching you with people of compatible attachment styles.
                                 </p>
 
-                                <h3>Inclusiveness</h3>
+                                <h3 className='font-bold tracking-tight text-gray-900 sm:text-4xl'>Inclusiveness</h3>
                                 <p>
                                     Polari is an inclusive dating app and safe space for the LGBTQIA+ community. Our goal is to provide you with a place where you can express yourself freely, without any judgement or bias.
                                 </p>

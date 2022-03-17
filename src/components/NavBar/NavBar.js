@@ -62,8 +62,7 @@ export default function Navbar() {
                                             <NavLink
                                                 key={item.name}
                                                 to={item.to}
-                                                className="px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:bg-teal-700 hover:text-white focus:bg-gray-800 focus:text-white"
-                                            // aria-current={isActive ? 'page' : undefined}
+                                                className="px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:bg-teal-700 hover:text-white focus:bg-gray-800 focus:text-white"
                                             >
                                                 {item.name}
                                             </NavLink>
@@ -98,22 +97,17 @@ export default function Navbar() {
                             </div>
                         </div>
 
-    
+                        {/* Menu panel for small screens */}
                         <Disclosure.Panel className="md:hidden">
                             <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
                                 {navigation.map((item) => (
-                                    <Disclosure.Button
+                                    <NavLink
                                         key={item.name}
-                                        as="a"
                                         to={item.to}
-                                        className={classNames(
-                                            item.current ? 'bg--900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
-                                            'block px-3 py-2 rounded-md text-base font-medium'
-                                        )}
-                                        aria-current={item.current ? 'page' : undefined}
+                                        className="bg--900 block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:bg-teal-700 hover:text-white focus:bg-gray-800 focus:text-white"
                                     >
                                         {item.name}
-                                    </Disclosure.Button>
+                                    </NavLink>
                                 ))}
                             </div>
                             <div className="pt-4 pb-3 border-t border-gray-700">
@@ -157,7 +151,7 @@ export default function Navbar() {
                                             <img
                                                 className="h-20 w-auto"
                                                 src="https://user-images.githubusercontent.com/87889660/158719963-e835f37c-ef8f-4c1c-8c8b-e731aa073929.svg"
-                                                alt="Workflow"
+                                                alt="Polari"
                                             />
 
                                         </Link>
@@ -165,10 +159,9 @@ export default function Navbar() {
                                     <div className="hidden md:ml-6 md:flex md:items-center md:space-x-4">
                                         {navigation.map((item) => (
                                             <NavLink
-                                                // key={item.name}
+                                                key={item.name}
                                                 to={item.to}
-                                                className="px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:bg-teal-700 hover:text-white focus:bg-gray-800 focus:text-white"
-                                            // aria-current={isActive ? 'page' : undefined}
+                                                className="px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:bg-teal-700 hover:text-white focus:bg-gray-800 focus:text-white"
                                             >
                                                 {item.name}
                                             </NavLink>
@@ -196,21 +189,17 @@ export default function Navbar() {
                             </div>
                         </div>
 
+                        {/* Menu panel for small screens */}
                         <Disclosure.Panel className="md:hidden">
                             <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
                                 {navigation.map((item) => (
-                                    <Disclosure.Button
+                                    <NavLink
                                         key={item.name}
-                                        as="a"
-                                        href={item.href}
-                                        className={classNames(
-                                            item.current ? 'bg-gray-800 text-white' : 'text-gray-300 hover:bg-teal-700 hover:text-white',
-                                            'block px-3 py-2 rounded-md text-base font-medium'
-                                        )}
-                                        aria-current={item.current ? 'page' : undefined}
+                                        to={item.to}
+                                        className="bg--900 block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:bg-teal-700 hover:text-white focus:bg-gray-800 focus:text-white"
                                     >
                                         {item.name}
-                                    </Disclosure.Button>
+                                    </NavLink>
                                 ))}
                             </div>
                         </Disclosure.Panel>
