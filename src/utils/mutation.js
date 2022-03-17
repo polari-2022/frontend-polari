@@ -6,7 +6,7 @@ export const LOGIN_USER = gql`
       token
       user {
         _id
-        username
+        email
       }
     }
   }
@@ -53,5 +53,25 @@ export const UPDATE_PROFILE = gql`
       profileId
       args
     }
+  }
+`;
+
+export const REMOVE_THREAD = gql`
+  mutation removeThread($threadId: ID!, $userId: ID!) {
+      removeThread(threadId: $threadId, userId: $userId) {
+          _id
+          threadId
+          userId
+      }
+  }
+`;
+
+export const REMOVE_MESSAGE = gql`
+  mutation removeMessage($messageId: ID!, $userId: ID!) {
+      removeMessage(messageId: $messageId, userId: $userId) {
+          _id
+          messageId
+          userId
+      }
   }
 `;
