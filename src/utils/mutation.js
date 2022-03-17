@@ -46,23 +46,12 @@ export const ADD_PROFILE = gql`
   }
 `;
 
-export const SAVE_BOOK = gql`
-  mutation saveBook($userId: ID!, $savedBook: String!) {
-    savedBook(userId: $userId, savedBook: $savedBook) {
+export const UPDATE_PROFILE = gql`
+  mutation updateProfile($profileId: ID!, $args: String) {
+    updateProfile(profileId: $profileId, args: $args) {
       _id
-      username
-      savedBook
-    }
-  }
-`;
-
-
-export const DELETE_BOOK = gql`
-  mutation deletebook($savedBook: String!) {
-    deletebook(skill: $savedBook) {
-      _id
-      username
-      savedBook
+      profileId
+      args
     }
   }
 `;
