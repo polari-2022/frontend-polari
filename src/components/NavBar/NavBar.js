@@ -1,4 +1,3 @@
-/* This example requires Tailwind CSS v2.0+ */
 import { Fragment, useState } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { BellIcon, MenuIcon, XIcon, ChatAltIcon } from '@heroicons/react/outline'
@@ -20,9 +19,9 @@ const navigation = [
     { name: 'Our Team', to: '/our-team' },
 ]
 const userNavigation = [
-    { name: 'Your Profile', href: '#' },
-    { name: 'Settings', href: '#' },
-    { name: 'Sign out', href: '#' },
+    { name: 'Your Profile', to: '#' },
+    { name: 'Settings', to: '#' },
+    { name: 'Sign out', to: '#' },
 ]
 
 function classNames(...classes) {
@@ -52,13 +51,8 @@ export default function Navbar() {
                                     <div className="flex-shrink-0 flex items-center">
                                         <Link to='/'>
                                             <img
-                                                className="block lg:hidden h-8 w-auto"
-                                                src="https://tailwindui.com/img/logos/workflow-mark-indigo-500.svg"
-                                                alt="Workflow"
-                                            />
-                                            <img
-                                                className="hidden lg:block h-8 w-auto"
-                                                src="https://tailwindui.com/img/logos/workflow-logo-indigo-500-mark-white-text.svg"
+                                                className="h-20 w-auto"
+                                                src="https://user-images.githubusercontent.com/87889660/158719963-e835f37c-ef8f-4c1c-8c8b-e731aa073929.svg"
                                                 alt="Workflow"
                                             />
                                         </Link>
@@ -76,14 +70,13 @@ export default function Navbar() {
                                         ))}
                                     </div>
                                 </div>
-                                
+
                                 <div className="flex items-center">
                                     <div className="flex-shrink-0">
                                         <NavLink to='/messages' >
                                             <button
                                                 type="button"
                                                 className="relative inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-teal-600 hover:bg-teal-500 focus:bg-teal-500 active:outline-none active:ring-2 active:ring-offset-2 active:ring-offset-gray-800 active:ring-teal-500"
-                                            // bg-emerald-600 hover:bg-emerald-500
                                             >
                                                 <ChatAltIcon className="-ml-1 mr-2 h-5 w-5" aria-hidden="true" />
                                                 <span>Messages</span>
@@ -105,15 +98,16 @@ export default function Navbar() {
                             </div>
                         </div>
 
+    
                         <Disclosure.Panel className="md:hidden">
                             <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
                                 {navigation.map((item) => (
                                     <Disclosure.Button
                                         key={item.name}
                                         as="a"
-                                        href={item.href}
+                                        to={item.to}
                                         className={classNames(
-                                            item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
+                                            item.current ? 'bg--900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
                                             'block px-3 py-2 rounded-md text-base font-medium'
                                         )}
                                         aria-current={item.current ? 'page' : undefined}
@@ -157,24 +151,21 @@ export default function Navbar() {
                                             )}
                                         </Disclosure.Button>
                                     </div>
+                                    {/* Logo */}
                                     <div className="flex-shrink-0 flex items-center">
                                         <Link to='/'>
                                             <img
-                                                className="block lg:hidden h-8 w-auto"
-                                                src="https://tailwindui.com/img/logos/workflow-mark-indigo-500.svg"
+                                                className="h-20 w-auto"
+                                                src="https://user-images.githubusercontent.com/87889660/158719963-e835f37c-ef8f-4c1c-8c8b-e731aa073929.svg"
                                                 alt="Workflow"
                                             />
-                                            <img
-                                                className="hidden lg:block h-8 w-auto"
-                                                src="https://tailwindui.com/img/logos/workflow-logo-indigo-500-mark-white-text.svg"
-                                                alt="Workflow"
-                                            />
+
                                         </Link>
                                     </div>
                                     <div className="hidden md:ml-6 md:flex md:items-center md:space-x-4">
                                         {navigation.map((item) => (
                                             <NavLink
-                                                key={item.name}
+                                                // key={item.name}
                                                 to={item.to}
                                                 className="px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:bg-teal-700 hover:text-white focus:bg-gray-800 focus:text-white"
                                             // aria-current={isActive ? 'page' : undefined}
@@ -188,8 +179,8 @@ export default function Navbar() {
                                 <div className="flex items-center">
                                     <div className="flex-shrink-0">
                                         <div className="relative md:flex items-center justify-end md:flex-1 lg:w-0">
-                                            <NavLink 
-                                                to="/login" 
+                                            <NavLink
+                                                to="/login"
                                                 className="ml-8 whitespace-nowrap px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:bg-teal-700 hover:text-white">
                                                 Log in
                                             </NavLink>
