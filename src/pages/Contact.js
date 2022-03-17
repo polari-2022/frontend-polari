@@ -1,6 +1,36 @@
-
+import React, { useState } from 'react';
+import { send } from 'emailjs-com';
 
 export default function Contact() {
+    const [toSend, setToSend] = useState({
+        firstname: '',
+        lastname: '',
+        email: '',
+        phonenumber: '',
+        message: '',
+    });
+    console.log(toSend)
+
+    const handleInput = (name, value) => {
+        setToSend({ ...toSend, [name]: value });
+    };
+
+    const sendEmail = (e) => {
+        e.preventDefault();
+        send(
+            'gmail',
+            'template_pln7dph',
+            toSend,
+            'ULmNPDASEGoMkIGPu'
+        )
+            .then((response) => {
+                console.log('SUCCESS!', response.status, response.text);
+                window.location.reload(false);
+            })
+            .catch((err) => {
+                console.log('FAILED...', err);
+            });
+    }
 
     return (
         <div className="bg-white py-16 px-4 overflow-hidden sm:px-6 lg:px-8 lg:py-24">
@@ -57,15 +87,17 @@ export default function Contact() {
 
                         {/* First name */}
                         <div>
-                            <label htmlFor="first-name" className="block text-sm font-medium text-gray-700">
+                            <label htmlFor="firstname" className="block text-sm font-medium text-gray-700">
                                 First name
                             </label>
                             <div className="mt-1">
                                 <input
                                     type="text"
-                                    name="first-name"
+                                    name="firstname"
                                     id="first-name"
-                                    autoComplete="given-name"
+                                    value={toSend.firstname}
+                                    onChange={(event) => handleInput("firstname", event.target.value)}
+                                    // autoComplete="given-name"
                                     className="py-3 px-4 block w-full shadow-sm focus:ring-emerald-500 focus:border-emerald-500 border-gray-300 rounded-md"
                                 />
                             </div>
@@ -73,15 +105,17 @@ export default function Contact() {
 
                         {/* Last name */}
                         <div>
-                            <label htmlFor="last-name" className="block text-sm font-medium text-gray-700">
+                            <label htmlFor="lastname" className="block text-sm font-medium text-gray-700">
                                 Last name
                             </label>
                             <div className="mt-1">
                                 <input
                                     type="text"
-                                    name="last-name"
+                                    name="lastname"
                                     id="last-name"
-                                    autoComplete="family-name"
+                                    value={toSend.lastname}
+                                    onChange={(event) => handleInput("lastname", event.target.value)}
+                                    // autoComplete="family-name"
                                     className="py-3 px-4 block w-full shadow-sm focus:ring-emerald-500 focus:border-emerald-500 border-gray-300 rounded-md"
                                 />
                             </div>
@@ -97,7 +131,9 @@ export default function Contact() {
                                     id="email"
                                     name="email"
                                     type="email"
-                                    autoComplete="email"
+                                    value={toSend.email}
+                                    onChange={(event) => handleInput("email", event.target.value)}
+                                    // autoComplete="email"
                                     className="py-3 px-4 block w-full shadow-sm focus:ring-emerald-500 focus:border-emerald-500 border-gray-300 rounded-md"
                                 />
                             </div>
@@ -105,7 +141,7 @@ export default function Contact() {
 
                         {/* Phone number */}
                         <div className="sm:col-span-2">
-                            <label htmlFor="phone-number" className="block text-sm font-medium text-gray-700">
+                            <label htmlFor="phonenumber" className="block text-sm font-medium text-gray-700">
                                 Phone Number
                             </label>
                             <div className="mt-1 relative rounded-md shadow-sm">
@@ -125,9 +161,11 @@ export default function Contact() {
                                 </div>
                                 <input
                                     type="text"
-                                    name="phone-number"
+                                    name="phonenumber"
                                     id="phone-number"
-                                    autoComplete="tel"
+                                    value={toSend.phonenumber}
+                                    onChange={(event) => handleInput("phonenumber", event.target.value)}
+                                    // autoComplete="tel"
                                     className="py-3 px-4 block w-full pl-20 focus:ring-emerald-500 focus:border-emerald-500 border-gray-300 rounded-md"
                                     placeholder="+1 (555) 987-6543"
                                 />
@@ -143,9 +181,10 @@ export default function Contact() {
                                 <textarea
                                     id="message"
                                     name="message"
+                                    value={toSend.message}
+                                    onChange={(event) => handleInput("message", event.target.value)}
                                     rows={4}
                                     className="py-3 px-4 block w-full shadow-sm focus:ring-emerald-500 focus:border-indigo-500 border border-gray-300 rounded-md"
-                                    defaultValue={''}
                                 />
                             </div>
                         </div>
@@ -154,6 +193,7 @@ export default function Contact() {
                         <div className="sm:col-span-2">
                             <button
                                 type="submit"
+                                onClick={sendEmail}
                                 className="w-full inline-flex items-center justify-center px-6 py-3 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-emerald-600 hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-500"
                             >
                                 Let's talk
