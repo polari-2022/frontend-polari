@@ -1,5 +1,5 @@
 import { Fragment, useState } from 'react'
-import { Listbox, Transition} from '@headlessui/react'
+import { Listbox, Transition } from '@headlessui/react'
 import { CheckIcon, SelectorIcon } from '@heroicons/react/solid'
 
 const peopleInterestedIn = [
@@ -93,28 +93,27 @@ export default function Profile() {
                     <form action="#" method="POST" className="grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-8">
                         {/* First name */}
                         <div>
-                            <label htmlFor="first-name" className="block text-sm font-medium text-gray-700">
+                            <label htmlFor="firstName" className="block text-sm font-medium text-gray-700">
                                 First name
                             </label>
                             <div className="mt-1">
                                 <input
                                     type="text"
-                                    name="first-name"
-                                    id="first-name"
-                                    autoComplete="given-name"
+                                    name="firstName"
+                                    id="firstName"
                                     className="py-3 px-4 block w-full shadow-sm focus:ring-emerald-500 focus:border-emerald-500 border-gray-300 rounded-md"
                                 />
                             </div>
                         </div>
                         <div>
-                            <label htmlFor="birthday" className="block text-sm font-medium text-gray-700">
+                            <label htmlFor="birthdate" className="block text-sm font-medium text-gray-700">
                                 Date of birth
                             </label>
                             <div className="mt-1">
                                 <input
                                     type="date"
-                                    name="birthday"
-                                    id="birthday"
+                                    name="birthdate"
+                                    id="birthdate"
                                     className="py-3 px-4 block w-full shadow-sm focus:ring-emerald-500 focus:border-emerald-500 border-gray-300 rounded-md"
                                 />
                             </div>
@@ -122,7 +121,7 @@ export default function Profile() {
 
                         {/* Who are you interested in */}
                         <div className="sm:col-span-2">
-                            <label htmlFor="interest" className="block text-sm font-medium text-gray-700">
+                            <label htmlFor="genderInterests" className="block text-sm font-medium text-gray-700">
                                 Who are you interested in?
                             </label>
                             <div className="mt-1">
@@ -133,7 +132,7 @@ export default function Profile() {
                                             <div key={interest.id} className="flex items-center">
                                                 <input
                                                     id={interest.id}
-                                                    name="interest"
+                                                    name="genderInterests"
                                                     type="radio"
                                                     className="focus:ring-emerald-500 h-4 w-4 text-emerald-600 border-gray-300"
                                                 />
@@ -173,6 +172,7 @@ export default function Profile() {
                                                         {identities.map((identity) => (
                                                             <Listbox.Option
                                                                 key={identity.id}
+                                                                id="genderIdentity"
                                                                 className={({ active }) =>
                                                                     classNames(
                                                                         active ? 'text-white bg-emerald-600' : 'text-gray-900',
@@ -215,7 +215,7 @@ export default function Profile() {
                             <Listbox value={selectedAttachmentStyle} onChange={setAttachmentStyle}>
                                 {({ open }) => (
                                     <>
-                                        <Listbox.Label className="block text-sm font-medium text-gray-700">Attachment style</Listbox.Label>
+                                        <Listbox.Label className="block text-sm font-medium text-gray-700">What is your attachment style?</Listbox.Label>
                                         <div className="mt-1 relative">
                                             <Listbox.Button className="bg-white relative w-full border border-gray-300 rounded-md shadow-sm py-3 px-4 text-left cursor-default focus:outline-none focus:ring-1 focus:ring-emerald-500 focus:border-emerald-500 sm:text-sm">
                                                 <span className="block truncate">{selectedAttachmentStyle.name}</span>
@@ -270,6 +270,38 @@ export default function Profile() {
                                 )}
                             </Listbox>
                         </div>
+
+
+                        <div>
+                            <label htmlFor="pronouns" className="block text-sm font-medium text-gray-700">
+                                What are your pronouns?
+                            </label>
+                            <div className="mt-1">
+                                <input
+                                    type="text"
+                                    name="pronouns"
+                                    id="pronouns"
+                                    className="py-3 px-4 block w-full shadow-sm focus:ring-emerald-500 focus:border-emerald-500 border-gray-300 rounded-md"
+                                />
+                            </div>
+                        </div>
+
+                        {/* Sexual orientation */}
+                        <div>
+                            <label htmlFor="sexualOrientation" className="block text-sm font-medium text-gray-700">
+                               What is your sexual orientation?
+                            </label>
+                            <div className="mt-1">
+                                <input
+                                    type="text"
+                                    name="sexualOrientation"
+                                    id="sexualOrientation"
+                                    className="py-3 px-4 block w-full shadow-sm focus:ring-emerald-500 focus:border-emerald-500 border-gray-300 rounded-md"
+                                />
+                            </div>
+                        </div>
+
+
 
                         {/* Bio */}
                         <div className="sm:col-span-2">
