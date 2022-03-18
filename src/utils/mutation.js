@@ -25,53 +25,113 @@ export const ADD_USER = gql`
 `;
 
 export const ADD_PROFILE = gql`
-  mutation addProfile($firstname: String!, $photo: String!, $attachmentStyle: String!, $genderIdentity: String!, $genderInterests: String!, $bio: String!, $birthdate: Date!, $pronouns: String, $sexualOrientation: String, $currentLocation: Int!, $userId: ID!) {
-    addUser(firstname: $firstname, photo: $photo, attachmentStyle: $attachmentStyle, genderIdentity: $genderIdentity, genderInterests: $genderInterests, bio: $bio, birthdate: $birthdate, pronouns: $pronouns, sexualOrientation: $sexualOrientation, currentLocation: $currentLocation, userId: $userId) {
-      token
-      user {
-        _id
-        firstname
-        photo
-        attachmentStyle
-        genderIdentity
-        genderInterests
-        bio
-        birthdate
-        pronouns
-        sexualOrientation
-        currentLocation
+  mutation addProfile(
+    $firstname: String!,
+    $photo: String!, 
+    $attachmentStyle: String!, 
+    $genderIdentity: String!, 
+    $genderInterests: [String]!, 
+    $bio: String!, 
+    $birthdate: Date!,
+    $pronouns: String,
+    $sexualOrientation: String, 
+    $currentLocation: Int!, 
+    $userId: ID!
+  ){
+      addProfile(
+        firstname: $firstname,
+        photo: $photo,
+        attachmentStyle: $attachmentStyle,
+        genderIdentity: $genderIdentity,
+        genderInterests: $genderInterests, 
+        bio: $bio, 
+        birthdate: $birthdate, 
+        pronouns: $pronouns, 
+        sexualOrientation: $sexualOrientation, 
+        currentLocation: $currentLocation, 
+        userId: $userId
+      ){
+        firstName,
+        photo,
+        attchmentStyle,
+        genderIdentity,
+        genderInterests,
+        bio,
+        birthdate,
+        pronouns,
+        sexualOrientation,
+        currentLocation,
         userId
+        token
+        user {
+          _id
+          email
+        }
       }
     }
-  }
 `;
 
 export const UPDATE_PROFILE = gql`
-  mutation updateProfile($profileId: ID!, $args: String) {
-    updateProfile(profileId: $profileId, args: $args) {
+  mutation updateProfile(
+      $profileId: ID!,
+      $firstName: String,
+      $photo: String,
+      $attachmentStyle: String,
+      $genderIdentity: String,
+      $genderInterests:[String],
+      $bio: String,
+      $birthdate: Date,
+      $pronouns: String,
+      $sexualOrientation: String,
+      $currentLocation: Int,
+  ){
+    updateProfile(
+      profileId: $profileId, 
+      firstName: $firstName,
+      photo: $photo,
+      attachmentStyle: $attachmentStyle,
+      genderIdentity: $genderIdentity,
+      genderInterests: $genderInterests,
+      bio: $bio,
+      birthdate: $birthdate,
+      pronouns: $pronouns,
+      sexualOrientation: $sexualOrientation,
+      currentLocation: $currentLocation,
+    ){
       _id
-      profileId
-      args
+      firstName,
+      photo,
+      attchmentStyle,
+      genderIdentity,
+      genderInterests,
+      bio,
+      birthdate,
+      pronouns,
+      sexualOrientation,
+      currentLocation,
+      userId
     }
   }
 `;
 
 export const REMOVE_THREAD = gql`
-  mutation removeThread($threadId: ID!, $userId: ID!) {
-      removeThread(threadId: $threadId, userId: $userId) {
+  mutation removeThread($threadId: ID!) {
+    removeThread(threadId: $threadId) {
           _id
-          threadId
+          text
+          date
           userId
-      }
+    }
   }
 `;
 
 export const REMOVE_MESSAGE = gql`
-  mutation removeMessage($messageId: ID!, $userId: ID!) {
-      removeMessage(messageId: $messageId, userId: $userId) {
+  mutation removeMessage($messageId: ID!) {
+      removeMessage(messageId: $messageId) {
           _id
-          messageId
-          userId
+          text
+          date
+          threadId
       }
   }
 `;
