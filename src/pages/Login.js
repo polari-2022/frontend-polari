@@ -1,4 +1,54 @@
+import React, { useState } from 'react';
+import { XCircleIcon } from '@heroicons/react/solid'
+import { useNavigate, Link } from 'react-router-dom';
+import { useMutation } from '@apollo/client';
+import { LOGIN_USER } from '../utils/mutation';
+
+import Auth from '../utils/auth';
+
 export default function Login() {
+    const [formState, setFormState] = useState({ 
+        email: '', 
+        password: '' 
+    });
+    const [login, { error, data }] = useMutation(LOGIN_USER);
+    let navigate = useNavigate();
+
+    const [alert, setAlert] = useState(false);
+    
+    // update state based on form input changes
+    const handleChange = (event) => {
+        const { name, value } = event.target;
+
+        setFormState({
+            ...formState,
+            [name]: value,
+        });
+        // console.log("formState", formState)
+
+        setAlert(false)
+    };
+
+    // submit form
+    const handleFormSubmit = async (event) => {
+        event.preventDefault();
+        // console.log(formState);
+        try {
+            const { data } = await login({
+                variables: { ...formState },
+            });
+
+            Auth.login(data.login.token);
+
+            // Navigate to the next step after POST
+            // navigate(`/dashboard`);
+            navigate(`/profile`);
+        } catch (e) {
+            console.error(e);
+            setAlert(true)
+        }
+    };
+
     return (
         <>
             {/* Login Section */}
@@ -24,7 +74,7 @@ export default function Login() {
                 <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
                     <div className="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
                         {/* Form */}
-                        <form className="space-y-6" action="#" method="POST">
+                        <form className="space-y-6" action="#" method="POST" onSubmit={handleFormSubmit}>
                             {/* Email */}
                             <div>
                                 <label htmlFor="email" className="block text-sm font-medium text-gray-700">
@@ -35,7 +85,9 @@ export default function Login() {
                                         id="email"
                                         name="email"
                                         type="email"
-                                        autoComplete="email"
+                                        value={formState.email}
+                                        // autoComplete="email"
+                                        onChange={handleChange}
                                         required
                                         className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-emerald-500 focus:border-emerald-500 sm:text-sm"
                                     />
@@ -52,7 +104,9 @@ export default function Login() {
                                         id="password"
                                         name="password"
                                         type="password"
-                                        autoComplete="current-password"
+                                        value={formState.password}
+                                        // autoComplete="current-password"
+                                        onChange={handleChange}
                                         required
                                         className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-emerald-500 focus:border-emerald-500 sm:text-sm"
                                     />
@@ -73,6 +127,19 @@ export default function Login() {
                                     </label>
                                 </div>
                             </div>
+
+                            {/* Error message */}
+                            {alert && <div className="rounded-md bg-red-50 p-4">
+                                    <div className="flex">
+                                        <div className="flex-shrink-0">
+                                            <XCircleIcon className="h-5 w-5 text-red-400" aria-hidden="true" />
+                                        </div>
+                                        <div className="ml-3">
+                                            <h3 className="text-sm font-medium text-red-800">Oh no! We can't find that user. Try again!</h3>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
 
                             {/* Sign in button */}
                             <div>
