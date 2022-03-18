@@ -1,11 +1,11 @@
 import { Fragment, useState } from 'react'
-import { Listbox, Transition, Switch } from '@headlessui/react'
+import { Listbox, Transition} from '@headlessui/react'
 import { CheckIcon, SelectorIcon } from '@heroicons/react/solid'
 
 const peopleInterestedIn = [
     { id: 'women', title: 'Women' },
     { id: 'men', title: 'Men' },
-    { id: 'nonbinary', title: 'Nonbinary people' },
+    { id: 'non-binary', title: 'Nonbinary people' },
 ]
 
 const attachmentStyles = [
@@ -17,7 +17,7 @@ const attachmentStyles = [
 const identities = [
     { id: 'woman', name: 'Woman' },
     { id: 'man', name: 'Man' },
-    { id: 'nonbinary', name: 'Nonbinary person' },
+    { id: 'non-binary', name: 'Nonbinary person' },
 ]
 
 
