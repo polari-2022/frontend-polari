@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Navigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const categories = [
     {
@@ -33,19 +33,20 @@ const categories = [
     },
 ]
 
-export default function Learn() {
-    const [attachment, setAttachment] = useState('');
-    console.log("attachment", attachment)
+export default function Learn( { setAttachment }) {
+    // const [attachment, setAttachment] = useState('');
+    // console.log("attachment", attachment)
+    let navigate = useNavigate();
 
     const handleFormSubmit = async (event) => {
         event.preventDefault();
       
-        // pass in selected attachment to profile??
-        <Navigate to="/profile" attachment={attachment} />;
+        // Navigate to the next step after POST
+        navigate(`/profile`);
     };
 
     return (
-        <div className="bg-white">
+        <div className="bg-white text-center">
             <div className="max-w-xl mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
                 <h2 className="text-2xl font-extrabold tracking-tight text-gray-900">Step 1: Pick your Attachment Style</h2>
                 <p className="mt-4 text-base text-gray-500">
@@ -56,7 +57,7 @@ export default function Learn() {
                 <form onSubmit={handleFormSubmit}>
                     <div className="mt-10 space-y-12 lg:space-y-0 lg:grid lg:grid-cols-3 lg:gap-x-8">
                         {categories.map((category) => (
-                            <button key={category.name} onClick={() => setAttachment(category.style)} className="group block border border-transparent rounded-md focus:outline-none focus:ring-4 focus:ring-offset-4 focus:ring-emerald-500">
+                            <button type="button" key={category.name} onClick={() => setAttachment(category.style)} className="group block border border-transparent rounded-md focus:outline-none focus:ring-4 focus:ring-offset-4 focus:ring-emerald-500">
                                 <div
                                     aria-hidden="true"
                                     className="aspect-w-3 aspect-h-3 rounded-lg overflow-hidden group-hover:opacity-75 lg:aspect-w-5 lg:aspect-h-4 sm:aspect-w-4 sm:aspect-h-3"

@@ -1,4 +1,5 @@
 import './App.css';
+import { useState } from "react";
 import { Routes, Route } from 'react-router-dom';
 import {
   ApolloClient,
@@ -43,6 +44,9 @@ const client = new ApolloClient({
 });
 
 function App() {
+  const [attachment, setAttachment] = useState('');
+  console.log("attachment", attachment)
+
   return (
     <ApolloProvider client={client}>
       <div className="App">
@@ -54,8 +58,9 @@ function App() {
           <Route path='/our-team' element={<Team />} />
           <Route path='/login' element={<Login />} />
           <Route path='/signup' element={<Signup />} />
-          <Route path='/learn' element={<Learn />} />
+          <Route path='/learn' element={<Learn setAttachment={setAttachment} />} />
           <Route path='/profile' element={<Profile />} />
+          {/* <Route path='/profile' element={<Profile attachment={attachment} />} /> */}
         </Routes>
         <Footer />
       </div>
