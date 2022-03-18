@@ -33,7 +33,7 @@ export const QUERY_PROFILES = gql`
 
 export const QUERY_SINGLE_PROFILE = gql`
     query singleProfile($profileId: ID!) {
-        profiles(profileId: $profileId) {
+        profile(profileId: $profileId) {
             _id
             firstname
             photo
@@ -54,8 +54,8 @@ export const QUERY_SINGLE_PROFILE = gql`
 `;
 
 export const QUERY_THREADS = gql`
-    query allThreads {
-        threads{
+    query userThreads($userId: String!) {
+        threads(userId: $userId){
             _id
             text
             date
@@ -67,14 +67,19 @@ export const QUERY_THREADS = gql`
                 _id
                 email
             }
+            messages{
+                _id
+                text
+                date
+            }
             userId
         }
     }
 `;
 
 export const QUERY_SINGLE_THREAD = gql`
-    query singleThread($args: String!) {
-        thread(args: $args) {
+    query singleThread($threadId: ID!) {
+        thread(threadId: $threadId) {
             _id
             text
             date
@@ -97,8 +102,8 @@ export const QUERY_SINGLE_THREAD = gql`
 `;
 
 export const QUERY_MESSAGES = gql`
-    query allMessages($args: String!) {
-        messages(args: $args) {
+    query threadMessages($threadId: String!) {
+        messages(threadId: $threadId) {
             _id
             text
             date
