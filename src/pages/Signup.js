@@ -3,18 +3,63 @@ import { green } from "tailwindcss/colors";
 import { XCircleIcon } from '@heroicons/react/solid'
 import { usePasswordValidation } from "../hooks/usePasswordValidation";
 import { useNavigate } from 'react-router-dom';
-// import { useMutation } from '@apollo/client';
-// import { ADD_USER } from '../utils/mutations';
+import { useMutation } from '@apollo/client';
+import { ADD_USER } from '../utils/mutation';
+
+import Auth from '../utils/auth';
 
 export default function Signup() {
-    // const [addUser, { error, data }] = useMutation(ADD_USER);
+    const [formState, setFormState] = useState({
+        email: '',
+        password: '',
+    });
+    const [addUser, { error, data }] = useMutation(ADD_USER);
+    let navigate = useNavigate();
 
-    const [password, setPassword] = useState({
+    const handleChange = (event) => {
+        const { name, value } = event.target;
+
+        setFormState({
+            ...formState,
+            [name]: value,
+        });
+        setAlert(false)
+        // console.log("formState", formState)
+
+        if (name === "password") {
+            setPasswordVal({ ...passwordVal, password: event.target.value });
+            // console.log("setPassword", passwordVal)
+        }
+    };
+
+    const handleFormSubmit = async (event) => {
+        event.preventDefault();
+        // console.log(formState);
+        if (match) {
+            // console.log("match", true)
+            try {
+                const { data } = await addUser({
+                    variables: { ...formState },
+                });
+
+                Auth.login(data.addUser.token);
+
+            // Navigate to the next step after POST
+            navigate(`/learn`);
+            } catch (e) {
+                console.error(e);
+            }
+        } else {
+            setAlert(true)
+        }
+    };
+
+    const [passwordVal, setPasswordVal] = useState({
         firstPassword: "",
-        confirmPassword: "",
+        password: "",
     });
 
-    const [error, setError] = useState(false);
+    const [alert, setAlert] = useState(false);
 
     const [
         validLength,
@@ -23,59 +68,13 @@ export default function Signup() {
         match,
         specialChar,
     ] = usePasswordValidation({
-        firstPassword: password.firstPassword,
-        confirmPassword: password.confirmPassword,
+        firstPassword: passwordVal.firstPassword,
+        confirmPassword: passwordVal.password,
     });
 
     const setFirst = (event) => {
-        setPassword({ ...password, firstPassword: event.target.value });
+        setPasswordVal({ ...passwordVal, firstPassword: event.target.value });
     };
-    const setConfirm = (event) => {
-        setPassword({ ...password, confirmPassword: event.target.value });
-
-        // console.log("confirm password", password.confirmPassword)
-        setUserFormData({
-            password: password.confirmPassword,
-        });
-        setError(false);
-    };
-
-    const [userFormData, setUserFormData] = useState({
-        email: '',
-        password: '',
-    });
-
-    let navigate = useNavigate();
-
-    const handleInputChange = (event) => {
-        const { value } = event.target;
-
-        setUserFormData({ ...userFormData, email: value });
-        // console.log("user email", userFormData.email)
-    };
-
-    const handleFormSubmit = async (event) => {
-        event.preventDefault();
-        if (match) {
-            console.log("match", match)
-
-            // try {
-            //   const { data } = await addUser({
-            //     variables: { ...userFormData },
-            //   });
-            //   console.log(data);
-            //   Auth.login(data.addUser.token);
-            // } catch (err) {
-            //   console.error(err);
-            // }
-
-            // Navigate to the next step after POST
-            navigate(`/learn`);
-        } else {
-            setError(true)
-        }
-    };
-
 
     return (
         <>
@@ -113,8 +112,9 @@ export default function Signup() {
                                         id="email"
                                         name="email"
                                         type="email"
-                                        autoComplete="email"
-                                        onChange={handleInputChange}
+                                        value={formState.email}
+                                        // autoComplete="email"
+                                        onChange={handleChange}
                                         required
                                         className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-emerald-500 focus:border-emerald-500 sm:text-sm"
                                     />
@@ -132,7 +132,7 @@ export default function Signup() {
                                         name="password"
                                         type="password"
                                         onChange={setFirst}
-                                        autoComplete="current-password"
+                                        // autoComplete="current-password"
                                         required
                                         className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-emerald-500 focus:border-emerald-500 sm:text-sm"
                                     />
@@ -141,16 +141,17 @@ export default function Signup() {
 
                             {/* Confim password */}
                             <div>
-                                <label htmlFor="confirm-password" className="block text-sm font-medium text-gray-700">
+                                <label htmlFor="confirmedPass" className="block text-sm font-medium text-gray-700">
                                     Confirm Password
                                 </label>
                                 <div className="mt-1">
                                     <input
-                                        id="confirm-password"
-                                        name="confirm-password"
+                                        id="confirmedPass"
+                                        name="password"
                                         type="password"
-                                        onChange={setConfirm}
-                                        autoComplete="current-password"
+                                        value={formState.password}
+                                        onChange={handleChange}
+                                        // autoComplete="current-password"
                                         required
                                         className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-emerald-500 focus:border-emerald-500 sm:text-sm"
                                     />
@@ -170,7 +171,7 @@ export default function Signup() {
                             </div>
 
                             {/* Error message */}
-                            {error && <div className="rounded-md bg-red-50 p-4">
+                            {alert && <div className="rounded-md bg-red-50 p-4">
                                     <div className="flex">
                                         <div className="flex-shrink-0">
                                             <XCircleIcon className="h-5 w-5 text-red-400" aria-hidden="true" />

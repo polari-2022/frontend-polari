@@ -20,7 +20,7 @@ import Learn from './pages/Learn'
 import Profile from './pages/Profile'
 
 const url = process.env.NODE_ENV === 'development'
-  ? '/graphql' : "https://backend-polari.herokuapp.com/";
+  ? '/graphql' : "https://backend-polari.herokuapp.com/graphql";
 const httpLink = createHttpLink({
   uri: url,
 });
