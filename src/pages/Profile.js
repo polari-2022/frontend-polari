@@ -289,7 +289,7 @@ export default function Profile() {
                         {/* Sexual orientation */}
                         <div>
                             <label htmlFor="sexualOrientation" className="block text-sm font-medium text-gray-700">
-                               What is your sexual orientation?
+                                What is your sexual orientation?
                             </label>
                             <div className="mt-1">
                                 <input
@@ -301,35 +301,72 @@ export default function Profile() {
                             </div>
                         </div>
 
-
-
-                        {/* Bio */}
+                        {/* Upload photo */}
                         <div className="sm:col-span-2">
-                            <label htmlFor="bio" className="block text-sm font-medium text-gray-700">
-                                Bio
+                            <label htmlFor="photo" className="block mb-1 text-sm font-medium text-gray-700">
+                                Upload a photo
                             </label>
-                            <div className="mt-1">
-                                <textarea
-                                    id="bio"
-                                    name="bio"
-                                    rows={4}
-                                    className="py-3 px-4 block w-full shadow-sm focus:ring-emerald-500 focus:border-emerald-500 border border-gray-300 rounded-md"
-                                    defaultValue={''}
-                                />
+                            <div className="max-w-lg flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
+                                <div className="space-y-1 text-center">
+                                    <svg
+                                        className="mx-auto h-12 w-12 text-gray-400"
+                                        stroke="currentColor"
+                                        fill="none"
+                                        viewBox="0 0 48 48"
+                                        aria-hidden="true"
+                                    >
+                                        <path
+                                            d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02"
+                                            strokeWidth={2}
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                        />
+                                    </svg>
+                                    <div className="flex text-sm text-gray-600">
+                                        <label
+                                            htmlFor="file-upload"
+                                            className="relative cursor-pointer bg-white rounded-md font-medium text-emerald-600 hover:text-emerald-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-emerald-500"
+                                        >
+                                            <span>Upload a file</span>
+                                            <input id="file-upload" name="file-upload" type="file" className="sr-only" />
+                                        </label>
+                                        <p className="pl-1">or drag and drop</p>
+                                    </div>
+                                    <p className="text-xs text-gray-500">PNG, JPG, GIF up to 10MB</p>
+                                </div>
                             </div>
                         </div>
+           
 
-                        {/* Button */}
-                        <div className="sm:col-span-2">
-                            <button
-                                type="submit"
-                                className="w-full inline-flex items-center justify-center px-6 py-3 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-emerald-600 hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-500"
-                            >
-                                Save
-                            </button>
-                        </div>
-                    </form>
+
+
+            {/* Bio */}
+            <div className="sm:col-span-2">
+                <label htmlFor="bio" className="block text-sm font-medium text-gray-700">
+                    Bio
+                </label>
+                <div className="mt-1">
+                    <textarea
+                        id="bio"
+                        name="bio"
+                        rows={4}
+                        className="py-3 px-4 block w-full shadow-sm focus:ring-emerald-500 focus:border-emerald-500 border border-gray-300 rounded-md"
+                        defaultValue={''}
+                    />
                 </div>
+            </div>
+
+            {/* Button */}
+            <div className="sm:col-span-2">
+                <button
+                    type="submit"
+                    className="w-full inline-flex items-center justify-center px-6 py-3 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-emerald-600 hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-500"
+                >
+                    Save
+                </button>
+            </div>
+        </form>
+                </div >
             </div >
         </div >
     )
