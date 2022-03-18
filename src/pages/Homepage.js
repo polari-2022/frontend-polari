@@ -12,7 +12,7 @@ export default function Homepage() {
                     <div className="mx-auto text-base max-w-prose lg:grid lg:grid-cols-2 lg:gap-8 lg:max-w-none">
                         <div>
                             {/* <h2 className="text-base text-indigo-600 font-semibold tracking-wide uppercase">Case Study</h2> */}
-                            <h3 className="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
+                            <h3 className="mt-2 text-center text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
                                Philosophy
                             </h3>
                         </div>
@@ -60,12 +60,7 @@ export default function Homepage() {
                             </div>
                         </div>
                         <div className="mt-8 lg:mt-0">
-                            {/* <div className="text-base max-w-prose mx-auto lg:max-w-none">
-                                <p className="text-lg text-gray-500">
-                                    Welcome to Polari, an LGBTQIA+ dating app that uses attachment theory to educate and empower people to form stronger relationships of all kinds.
-                                </p>
-                            </div> */}
-                            <div className="mt-5 prose prose-indigo text-lg mx-auto lg:max-w-none lg:row-start-1 lg:col-start-1">
+                            <div className="mt-5 prose prose-indigo text-center text-lg mx-auto lg:max-w-none lg:row-start-1 lg:col-start-1">
                                 <p>
                                     Our app was built on the belief that our personalities and attachment styles are transformative, life-changing experiences for everyone involved. It’s about putting yourself out there and challenging you to make more authentic connections with people who care about who you really are.
                                 </p>
