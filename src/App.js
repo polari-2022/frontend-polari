@@ -9,6 +9,7 @@ import Team from './pages/Team'
 import Login from '../src/pages/Login'
 import Signup from '../src/pages/Signup'
 import Footer from './components/Footer/Footer'
+import Learn from './pages/Learn'
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
         <Route path='/our-team' element={<Team />} />
         <Route path='/login' element={<Login />} />
         <Route path='/signup' element={<Signup />} />
+        <Route path='/learn' element={<Learn />} />
       </Routes>
       <Footer />
     </div>

@@ -9,7 +9,6 @@ export default function Contact() {
         phonenumber: '',
         message: '',
     });
-    console.log(toSend)
 
     const handleInput = (name, value) => {
         setToSend({ ...toSend, [name]: value });
