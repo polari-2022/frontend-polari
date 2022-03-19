@@ -42,10 +42,10 @@ export default function Signup() {
                     variables: { ...formState },
                 });
 
-                Auth.login(data.addUser.token);
+                Auth.signup(data.addUser.token);
 
             // Navigate to the next step after POST
-            navigate(`/learn`);
+            // navigate(`/learn`);
             } catch (e) {
                 console.error(e);
             }

@@ -1,6 +1,12 @@
 import { Fragment, useState } from 'react'
 import { Listbox, Transition } from '@headlessui/react'
 import { CheckIcon, SelectorIcon } from '@heroicons/react/solid'
+import { useQuery, useMutation } from '@apollo/client';
+import { ADD_PROFILE } from '../utils/mutation';
+
+import { QUERY_ME } from '../utils/query';
+
+import Auth from '../utils/auth';
 
 const peopleInterestedIn = [
     { id: 'women', title: 'Women' },
@@ -26,8 +32,68 @@ function classNames(...classes) {
 }
 
 export default function Profile() {
+    const [formState, setFormState] = useState({ 
+        firstName: '', 
+        photo: '',
+        genderInterests: '',
+        bio: '',
+        birthdate: '',
+        pronouns: '',
+        sexualOrientation: '',
+        currentLocation: '',
+    });
+
+    const { loading, data } = useQuery(QUERY_ME);
+
+    const [alert, setAlert] = useState(false);
+
+    const userData = data?.me || {};
+    // console.log("userData", userData)
+
+    const [addProfile, { error }] = useMutation(ADD_PROFILE);
+
+     // update state based on form input changes
+     const handleChange = (event) => {
+        const { name, value } = event.target;
+
+        setFormState({
+            ...formState,
+            [name]: value,
+        });
+        // console.log("formState", formState)
+
+        setAlert(false)
+    };
+
+    // submit form
+    const handleFormSubmit = async (event) => {
+        event.preventDefault();
+        // console.log(formState);
+        try {
+            const { data } = await addProfile({
+                variables: {
+                    ...formState,
+                  genderIdentity: selectedIdentity.id,
+                  attachmentStyle: selectedAttachmentStyle.id,
+                  userId: Auth.getUser().data._id,
+                },
+              });
+
+            Auth.login(data.login.token);
+
+            // Navigate to the next step after POST
+            // navigate(`/dashboard`);
+            // navigate(`/profile`);
+        } catch (e) {
+            console.error(e);
+            setAlert(true)
+        }
+    };
+
     const [selectedIdentity, setIdentity] = useState(identities[2])
     const [selectedAttachmentStyle, setAttachmentStyle] = useState(attachmentStyles[2])
+    // console.log("selectedIdentity", selectedIdentity)
+    // console.log("selectedAttachmentStyle", selectedAttachmentStyle)
 
 
     return (
@@ -86,7 +152,7 @@ export default function Profile() {
                 <div className="mt-12">
 
                     {/* Form */}
-                    <form action="#" method="POST" className="grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-8">
+                    <form onSubmit={handleFormSubmit} action="#" method="POST" className="grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-8">
                         {/* First name */}
                         <div>
                             <label htmlFor="firstName" className="block text-sm font-medium text-gray-700">
@@ -96,6 +162,8 @@ export default function Profile() {
                                 <input
                                     type="text"
                                     name="firstName"
+                                    value={formState.firstName}
+                                    onChange={handleChange}
                                     id="firstName"
                                     className="py-3 px-4 block w-full shadow-sm focus:ring-emerald-500 focus:border-emerald-500 border-gray-300 rounded-md"
                                 />
@@ -109,6 +177,8 @@ export default function Profile() {
                                 <input
                                     type="date"
                                     name="birthdate"
+                                    value={formState.birthdate}
+                                    onChange={handleChange}
                                     id="birthdate"
                                     className="py-3 px-4 block w-full shadow-sm focus:ring-emerald-500 focus:border-emerald-500 border-gray-300 rounded-md"
                                 />
@@ -129,6 +199,8 @@ export default function Profile() {
                                                 <input
                                                     id={interest.id}
                                                     name="genderInterests"
+                                                    value={interest.id}
+                                                    onClick={handleChange}
                                                     type="radio"
                                                     className="focus:ring-emerald-500 h-4 w-4 text-emerald-600 border-gray-300"
                                                 />
@@ -231,6 +303,7 @@ export default function Profile() {
                                                     {attachmentStyles.map((type) => (
                                                         <Listbox.Option
                                                             key={type.id}
+                                                            id="attachemntStyle"
                                                             className={({ active }) =>
                                                                 classNames(
                                                                     active ? 'text-white bg-emerald-600' : 'text-gray-900',
@@ -277,6 +350,8 @@ export default function Profile() {
                                     type="text"
                                     name="pronouns"
                                     id="pronouns"
+                                    value={formState.pronouns}
+                                    onChange={handleChange}
                                     className="py-3 px-4 block w-full shadow-sm focus:ring-emerald-500 focus:border-emerald-500 border-gray-300 rounded-md"
                                 />
                             </div>
@@ -292,6 +367,8 @@ export default function Profile() {
                                     type="text"
                                     name="sexualOrientation"
                                     id="sexualOrientation"
+                                    value={formState.sexualOrientation}
+                                    onChange={handleChange}
                                     className="py-3 px-4 block w-full shadow-sm focus:ring-emerald-500 focus:border-emerald-500 border-gray-300 rounded-md"
                                 />
                             </div>
@@ -345,6 +422,8 @@ export default function Profile() {
                     <textarea
                         id="bio"
                         name="bio"
+                        value={formState.bio}
+                        onChange={handleChange}
                         rows={4}
                         className="py-3 px-4 block w-full shadow-sm focus:ring-emerald-500 focus:border-emerald-500 border border-gray-300 rounded-md"
                         defaultValue={''}
