@@ -12,7 +12,7 @@ export default function Login() {
         password: '' 
     });
     const [login, { error, data }] = useMutation(LOGIN_USER);
-    let navigate = useNavigate();
+    // let navigate = useNavigate();
 
     const [alert, setAlert] = useState(false);
     

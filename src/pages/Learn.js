@@ -42,7 +42,7 @@ export default function Learn( { setAttachment }) {
         event.preventDefault();
       
         // Navigate to the next step after POST
-        navigate(`/profile`);
+        navigate(`/create-profile`);
     };
 
     return (
