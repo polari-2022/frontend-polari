@@ -19,6 +19,8 @@ import Signup from '../src/pages/Signup'
 import Footer from './components/Footer/Footer'
 import Learn from './pages/Learn'
 import Profile from './pages/Profile'
+import Dashboard from './pages/Dashboard';
+
 
 const url = process.env.NODE_ENV === 'development'
   ? '/graphql' : "https://backend-polari.herokuapp.com/graphql";
@@ -60,6 +62,8 @@ function App() {
           <Route path='/signup' element={<Signup />} />
           <Route path='/learn' element={<Learn setAttachment={setAttachment} />} />
           <Route path='/profile' element={<Profile />} />
+          <Route path='/dashboard' element={<Dashboard />} />
+
           {/* <Route path='/profile' element={<Profile attachment={attachment} />} /> */}
         </Routes>
         <Footer />
