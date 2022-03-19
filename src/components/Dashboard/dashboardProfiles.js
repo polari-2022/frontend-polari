@@ -2,16 +2,12 @@ import React, {useState} from 'react';
 import OneProfile from './oneProfile'
 import './dashboardProfile.css'
 
-import Auth from '../../utils/auth';
-
-
-
-
 const DashboardProfiles = ({ profiles, title }) => {
   const [current, setCurrent] = useState(0)
   const length = profiles.length
-//   need to make making the MatchLovers algorithm !! 
-//   new list of profiles / useState and spreader function 
+// Need to make making the MatchLovers algorithm !! 
+
+// New list of profiles / useState and spreader function 
 function Lovers(){
   console.log("profiles",profiles[0])
   // remove logged in user 
@@ -41,34 +37,25 @@ Lovers();
   }
   return (
     <div>
-      {Auth.loggedIn() ? (
-      <>
-        <h3 className="text-primary">{title}</h3>
+      <h3 className="text-primary">{title}</h3>
 
-        
-        <button className='nobutton' onClick={nextProfile}>Nah</button>
-        <div className='profile'>
-          {profiles.map((profile, index)=>{
-              return(
-                  <div className={ index === current ? 'activeProfile' : 'nonActive'} key={index}>
-                      {index === current && (< OneProfile  profile={profile} />) }
-                      
-                  </div>
-              )
-          })}
-        </div>
-
-        <button className='yesbutton' onClick={goToMessage}>YASSSS</button>
-
-        </>
-      ) : (
-        <>
-          {window.location.replace('/login')}
-        </>
-      )
-      }
+      
+      <button className='nobutton' onClick={nextProfile}>Nah</button>
+      <div className='profile'>
+        {profiles.map((profile, index)=>{
+            return(
+                <div className={ index === current ? 'activeProfile' : 'nonActive'} key={index}>
+                    {index === current && (< OneProfile  profile={profile} />) }
+                    
+                </div>
+            )
+        })}
       </div>
-  )
+
+      <button className='yesbutton' onClick={goToMessage}>YASSSS</button>
+
+    </div>
+  );
 };
 
 export default DashboardProfiles;
