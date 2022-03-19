@@ -51,7 +51,7 @@ export default function Profile() {
                             height={20}
                             patternUnits="userSpaceOnUse"
                         >
-                            <rect x={0} y={0} width={4} height={4} className="text-gray-200" fill="currentColor" />
+                            <rect x={0} y={0} width={4} height={4} className="text-green-100" fill="currentColor" />
                         </pattern>
                     </defs>
                     <rect width={404} height={404} fill="url(#85737c0e-0916-41d7-917f-596dc7edfa27)" />
