@@ -17,7 +17,7 @@ export default function OneProfile({ profile }) {
                                 <div className="leading-6 font-medium space-y-3">
                                     <h3 className="text-xl sm:text-2xl md:text-4xl">{profile.firstName}</h3>
                                     <button className="text-m sm:text-lg p-1 mr-1 rounded-full border-solid border-2 border-emerald-700 text-emerald-600">{profile.attachmentStyle}</button>
-                                    <button className="text-m sm:text-lg p-1 m-1 rounded-full border-solid border-2 border-emerald-700 text-emerald-600">{profile.currentLocation}</button>
+                                    <button className="text-m sm:text-lg p-1 m-1 rounded-full border-solid border-2 border-emerald-700 text-emerald-600">{profile.currentCity}</button>
                                     {
                                         (!profile.pronouns.length ? '' : <button className="text-m sm:text-lg p-1 m-1 rounded-full border-solid border-2 border-emerald-700 text-emerald-600">{profile.pronouns}</button>)
                                     }

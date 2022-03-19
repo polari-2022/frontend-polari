@@ -16,7 +16,7 @@ export const QUERY_ME =gql`
                 birthdate
                 pronouns
                 sexualOrientation
-                currentLocation
+                currentCity
             }
         }
     }
@@ -44,7 +44,7 @@ export const QUERY_PROFILES = gql`
             birthdate
             pronouns
             sexualOrientation
-            currentLocation
+            currentCity
             user {
                 _id
                 email
@@ -66,7 +66,7 @@ export const QUERY_SINGLE_PROFILE = gql`
             birthdate
             pronouns
             sexualOrientation
-            currentLocation
+            currentCity
             user {
                 _id
                 email
