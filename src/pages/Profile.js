@@ -1,5 +1,5 @@
 import { Fragment, useState } from 'react'
-import { Listbox, Transition} from '@headlessui/react'
+import { Listbox, Transition } from '@headlessui/react'
 import { CheckIcon, SelectorIcon } from '@heroicons/react/solid'
 
 const peopleInterestedIn = [
@@ -51,7 +51,7 @@ export default function Profile() {
                             height={20}
                             patternUnits="userSpaceOnUse"
                         >
-                            <rect x={0} y={0} width={4} height={4} className="text-gray-200" fill="currentColor" />
+                            <rect x={0} y={0} width={4} height={4} className="text-green-100" fill="currentColor" />
                         </pattern>
                     </defs>
                     <rect width={404} height={404} fill="url(#85737c0e-0916-41d7-917f-596dc7edfa27)" />
@@ -82,10 +82,6 @@ export default function Profile() {
                 {/* Profile header */}
                 <div className="text-center">
                     <h2 className="text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl">Profile</h2>
-                    <p className="mt-4 text-lg leading-6 text-gray-500">
-                        Nullam risus blandit ac aliquam justo ipsum. Quam mauris volutpat massa dictumst amet. Sapien tortor lacus
-                        arcu.
-                    </p>
                 </div>
                 <div className="mt-12">
 
@@ -93,28 +89,27 @@ export default function Profile() {
                     <form action="#" method="POST" className="grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-8">
                         {/* First name */}
                         <div>
-                            <label htmlFor="first-name" className="block text-sm font-medium text-gray-700">
+                            <label htmlFor="firstName" className="block text-sm font-medium text-gray-700">
                                 First name
                             </label>
                             <div className="mt-1">
                                 <input
                                     type="text"
-                                    name="first-name"
-                                    id="first-name"
-                                    autoComplete="given-name"
+                                    name="firstName"
+                                    id="firstName"
                                     className="py-3 px-4 block w-full shadow-sm focus:ring-emerald-500 focus:border-emerald-500 border-gray-300 rounded-md"
                                 />
                             </div>
                         </div>
                         <div>
-                            <label htmlFor="birthday" className="block text-sm font-medium text-gray-700">
+                            <label htmlFor="birthdate" className="block text-sm font-medium text-gray-700">
                                 Date of birth
                             </label>
                             <div className="mt-1">
                                 <input
                                     type="date"
-                                    name="birthday"
-                                    id="birthday"
+                                    name="birthdate"
+                                    id="birthdate"
                                     className="py-3 px-4 block w-full shadow-sm focus:ring-emerald-500 focus:border-emerald-500 border-gray-300 rounded-md"
                                 />
                             </div>
@@ -122,7 +117,7 @@ export default function Profile() {
 
                         {/* Who are you interested in */}
                         <div className="sm:col-span-2">
-                            <label htmlFor="interest" className="block text-sm font-medium text-gray-700">
+                            <label htmlFor="genderInterests" className="block text-sm font-medium text-gray-700">
                                 Who are you interested in?
                             </label>
                             <div className="mt-1">
@@ -133,7 +128,7 @@ export default function Profile() {
                                             <div key={interest.id} className="flex items-center">
                                                 <input
                                                     id={interest.id}
-                                                    name="interest"
+                                                    name="genderInterests"
                                                     type="radio"
                                                     className="focus:ring-emerald-500 h-4 w-4 text-emerald-600 border-gray-300"
                                                 />
@@ -173,6 +168,7 @@ export default function Profile() {
                                                         {identities.map((identity) => (
                                                             <Listbox.Option
                                                                 key={identity.id}
+                                                                id="genderIdentity"
                                                                 className={({ active }) =>
                                                                     classNames(
                                                                         active ? 'text-white bg-emerald-600' : 'text-gray-900',
@@ -215,7 +211,7 @@ export default function Profile() {
                             <Listbox value={selectedAttachmentStyle} onChange={setAttachmentStyle}>
                                 {({ open }) => (
                                     <>
-                                        <Listbox.Label className="block text-sm font-medium text-gray-700">Attachment style</Listbox.Label>
+                                        <Listbox.Label className="block text-sm font-medium text-gray-700">What is your attachment style?</Listbox.Label>
                                         <div className="mt-1 relative">
                                             <Listbox.Button className="bg-white relative w-full border border-gray-300 rounded-md shadow-sm py-3 px-4 text-left cursor-default focus:outline-none focus:ring-1 focus:ring-emerald-500 focus:border-emerald-500 sm:text-sm">
                                                 <span className="block truncate">{selectedAttachmentStyle.name}</span>
@@ -271,33 +267,102 @@ export default function Profile() {
                             </Listbox>
                         </div>
 
-                        {/* Bio */}
-                        <div className="sm:col-span-2">
-                            <label htmlFor="bio" className="block text-sm font-medium text-gray-700">
-                                Bio
+
+                        <div>
+                            <label htmlFor="pronouns" className="block text-sm font-medium text-gray-700">
+                                What are your pronouns?
                             </label>
                             <div className="mt-1">
-                                <textarea
-                                    id="bio"
-                                    name="bio"
-                                    rows={4}
-                                    className="py-3 px-4 block w-full shadow-sm focus:ring-emerald-500 focus:border-emerald-500 border border-gray-300 rounded-md"
-                                    defaultValue={''}
+                                <input
+                                    type="text"
+                                    name="pronouns"
+                                    id="pronouns"
+                                    className="py-3 px-4 block w-full shadow-sm focus:ring-emerald-500 focus:border-emerald-500 border-gray-300 rounded-md"
                                 />
                             </div>
                         </div>
 
-                        {/* Button */}
-                        <div className="sm:col-span-2">
-                            <button
-                                type="submit"
-                                className="w-full inline-flex items-center justify-center px-6 py-3 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-emerald-600 hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-500"
-                            >
-                                Save
-                            </button>
+                        {/* Sexual orientation */}
+                        <div>
+                            <label htmlFor="sexualOrientation" className="block text-sm font-medium text-gray-700">
+                                What is your sexual orientation?
+                            </label>
+                            <div className="mt-1">
+                                <input
+                                    type="text"
+                                    name="sexualOrientation"
+                                    id="sexualOrientation"
+                                    className="py-3 px-4 block w-full shadow-sm focus:ring-emerald-500 focus:border-emerald-500 border-gray-300 rounded-md"
+                                />
+                            </div>
                         </div>
-                    </form>
+
+                        {/* Upload photo */}
+                        <div className="sm:col-span-2">
+                            <label htmlFor="photo" className="block mb-1 text-sm font-medium text-gray-700">
+                                Upload a photo
+                            </label>
+                            <div className="max-w-lg flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
+                                <div className="space-y-1 text-center">
+                                    <svg
+                                        className="mx-auto h-12 w-12 text-gray-400"
+                                        stroke="currentColor"
+                                        fill="none"
+                                        viewBox="0 0 48 48"
+                                        aria-hidden="true"
+                                    >
+                                        <path
+                                            d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02"
+                                            strokeWidth={2}
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                        />
+                                    </svg>
+                                    <div className="flex text-sm text-gray-600">
+                                        <label
+                                            htmlFor="file-upload"
+                                            className="relative cursor-pointer bg-white rounded-md font-medium text-emerald-600 hover:text-emerald-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-emerald-500"
+                                        >
+                                            <span>Upload a file</span>
+                                            <input id="file-upload" name="file-upload" type="file" className="sr-only" />
+                                        </label>
+                                        <p className="pl-1">or drag and drop</p>
+                                    </div>
+                                    <p className="text-xs text-gray-500">PNG, JPG, GIF up to 10MB</p>
+                                </div>
+                            </div>
+                        </div>
+           
+
+
+
+            {/* Bio */}
+            <div className="sm:col-span-2">
+                <label htmlFor="bio" className="block text-sm font-medium text-gray-700">
+                    Bio
+                </label>
+                <div className="mt-1">
+                    <textarea
+                        id="bio"
+                        name="bio"
+                        rows={4}
+                        className="py-3 px-4 block w-full shadow-sm focus:ring-emerald-500 focus:border-emerald-500 border border-gray-300 rounded-md"
+                        defaultValue={''}
+                    />
                 </div>
+            </div>
+
+            {/* Button */}
+            <div className="sm:col-span-2">
+                <button
+                    type="submit"
+                    className="w-full inline-flex items-center justify-center px-6 py-3 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-emerald-600 hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-500"
+                >
+                    Save
+                </button>
+            </div>
+        </form>
+                </div >
             </div >
         </div >
     )
