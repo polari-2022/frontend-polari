@@ -32,8 +32,8 @@ function classNames(...classes) {
 }
 
 export default function Profile() {
-    const [formState, setFormState] = useState({ 
-        firstName: '', 
+    const [formState, setFormState] = useState({
+        firstName: '',
         photo: '',
         genderInterests: '',
         bio: '',
@@ -52,8 +52,8 @@ export default function Profile() {
 
     const [addProfile, { error }] = useMutation(ADD_PROFILE);
 
-     // update state based on form input changes
-     const handleChange = (event) => {
+    // update state based on form input changes
+    const handleChange = (event) => {
         const { name, value } = event.target;
 
         setFormState({
@@ -73,11 +73,11 @@ export default function Profile() {
             const { data } = await addProfile({
                 variables: {
                     ...formState,
-                  genderIdentity: selectedIdentity.id,
-                  attachmentStyle: selectedAttachmentStyle.id,
-                  userId: Auth.getUser().data._id,
+                    genderIdentity: selectedIdentity.id,
+                    attachmentStyle: selectedAttachmentStyle.id,
+                    userId: Auth.getUser().data._id,
                 },
-              });
+            });
 
             Auth.login(data.login.token);
 
@@ -374,6 +374,22 @@ export default function Profile() {
                             </div>
                         </div>
 
+                        {/* Current City */}
+                        <div className="sm:col-span-2">
+                            <label htmlFor="currentCity" className="block text-sm font-medium text-gray-700">
+                                What city are you located in?
+                            </label>
+                            <div className="mt-1">
+                                <input
+                                    type="text"
+                                    name="currentCity"
+                                    id="currentCity"
+                                    className="py-3 px-4 block w-full shadow-sm focus:ring-emerald-500 focus:border-emerald-500 border-gray-300 rounded-md"
+                                />
+                            </div>
+                        </div>
+
+
                         {/* Upload photo */}
                         <div className="sm:col-span-2">
                             <label htmlFor="photo" className="block mb-1 text-sm font-medium text-gray-700">
@@ -409,38 +425,35 @@ export default function Profile() {
                                 </div>
                             </div>
                         </div>
-           
 
+                        {/* Bio */}
+                        <div className="sm:col-span-2">
+                            <label htmlFor="bio" className="block text-sm font-medium text-gray-700">
+                                Bio
+                            </label>
+                            <div className="mt-1">
+                                <textarea
+                                    id="bio"
+                                    name="bio"
+                                    value={formState.bio}
+                                    onChange={handleChange}
+                                    rows={4}
+                                    className="py-3 px-4 block w-full shadow-sm focus:ring-emerald-500 focus:border-emerald-500 border border-gray-300 rounded-md"
+                                    defaultValue={''}
+                                />
+                            </div>
+                        </div>
 
-
-            {/* Bio */}
-            <div className="sm:col-span-2">
-                <label htmlFor="bio" className="block text-sm font-medium text-gray-700">
-                    Bio
-                </label>
-                <div className="mt-1">
-                    <textarea
-                        id="bio"
-                        name="bio"
-                        value={formState.bio}
-                        onChange={handleChange}
-                        rows={4}
-                        className="py-3 px-4 block w-full shadow-sm focus:ring-emerald-500 focus:border-emerald-500 border border-gray-300 rounded-md"
-                        defaultValue={''}
-                    />
-                </div>
-            </div>
-
-            {/* Button */}
-            <div className="sm:col-span-2">
-                <button
-                    type="submit"
-                    className="w-full inline-flex items-center justify-center px-6 py-3 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-emerald-600 hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-500"
-                >
-                    Save
-                </button>
-            </div>
-        </form>
+                        {/* Button */}
+                        <div className="sm:col-span-2">
+                            <button
+                                type="submit"
+                                className="w-full inline-flex items-center justify-center px-6 py-3 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-emerald-600 hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-500"
+                            >
+                                Save
+                            </button>
+                        </div>
+                    </form>
                 </div >
             </div >
         </div >
