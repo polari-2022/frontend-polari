@@ -123,7 +123,7 @@ export default function Navbar() {
                                             </NavLink>
                                             <NavLink
                                                 to="/signup"
-                                                className="ml-8 whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-emerald-600 hover:bg-emerald-500"
+                                                className="hidden ml-8 whitespace-nowrap items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-emerald-600 hover:bg-emerald-500"
                                             >
                                                 Sign up
                                             </NavLink>
@@ -150,7 +150,7 @@ export default function Navbar() {
                                     <a
                                         key="logout"
                                         onClick={logout}
-                                        className="bg--900 block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:bg-teal-700 hover:text-white focus:bg-gray-800 focus:text-white"
+                                        className="bg--900 block px-3 py-2 rounded-md text-base font-medium border border-transparent shadow-sm text-white bg-emerald-600 hover:bg-emerald-500"
                                     >
                                         Logout
                                     </a>
@@ -179,6 +179,12 @@ export default function Navbar() {
                                             {item.name}
                                         </NavLink>
                                     ))}
+                                    <NavLink
+                                        to="/signup"
+                                        className="bg--900 block px-3 py-2 rounded-md text-base font-medium border border-transparent shadow-sm text-white bg-emerald-600 hover:bg-emerald-500"
+                                    >
+                                        Sign up
+                                    </NavLink>
                                 </div>
                             </Disclosure.Panel>
                         )
