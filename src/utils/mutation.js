@@ -35,7 +35,7 @@ export const ADD_PROFILE = gql`
     $birthdate: Date!,
     $pronouns: String,
     $sexualOrientation: String, 
-    $currentLocation: Int!, 
+    $currentCity: String!, 
     $userId: ID!
   ){
       addProfile(
@@ -48,7 +48,7 @@ export const ADD_PROFILE = gql`
         birthdate: $birthdate, 
         pronouns: $pronouns, 
         sexualOrientation: $sexualOrientation, 
-        currentLocation: $currentLocation, 
+        currentCity: $currentCity, 
         userId: $userId
       ){
         firstName,
@@ -60,7 +60,7 @@ export const ADD_PROFILE = gql`
         birthdate,
         pronouns,
         sexualOrientation,
-        currentLocation,
+        currentCity,
         userId
         token
         user {
@@ -83,7 +83,7 @@ export const UPDATE_PROFILE = gql`
       $birthdate: Date,
       $pronouns: String,
       $sexualOrientation: String,
-      $currentLocation: Int,
+      $currentCity: String,
   ){
     updateProfile(
       profileId: $profileId, 
@@ -96,7 +96,7 @@ export const UPDATE_PROFILE = gql`
       birthdate: $birthdate,
       pronouns: $pronouns,
       sexualOrientation: $sexualOrientation,
-      currentLocation: $currentLocation,
+      currentCity: $currentCity,
     ){
       _id
       firstName,
@@ -108,7 +108,7 @@ export const UPDATE_PROFILE = gql`
       birthdate,
       pronouns,
       sexualOrientation,
-      currentLocation,
+      currentCity,
       userId
     }
   }
