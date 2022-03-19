@@ -217,13 +217,13 @@ export default function Attachments() {
                                         <div className="text-xl font-bold text-white p-3">
                                             <h2>Recommended Read and Resource:</h2>
                                         </div>
-                                        <p className="font-normal pt-3">
+                                        <div className="font-normal pt-3">
                                             We highly recommend the book 
                                             <p>
                                                 <a className='text-teal-300 hover:text-teal-400 underline' target="_blank" rel="noreferrer" href="https://www.attachedthebook.com/wordpress/buy-the-book/">Attached: The New Science of Adult Attachment by Amir Levine, M.D. and Rachel S.F. Heller, M.A.</a> 
                                             </p>
                                             to find further insight on attachment styles.
-                                        </p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

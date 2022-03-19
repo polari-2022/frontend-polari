@@ -1,9 +1,11 @@
 import { Fragment, useState } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { BellIcon, MenuIcon, XIcon, ChatAltIcon } from '@heroicons/react/outline'
-// import { PlusSmIcon } from '@heroicons/react/solid'
+import { UserCircleIcon } from '@heroicons/react/solid'
 // routing
 import { NavLink, Link } from 'react-router-dom'
+import { useQuery, useMutation } from '@apollo/client';
+import { QUERY_ME } from '../../utils/query';
 
 import Auth from '../../utils/auth';
 
@@ -21,9 +23,8 @@ const navigation = [
     { name: 'Our Team', to: '/our-team' },
 ]
 const userNavigation = [
-    { name: 'Your Profile', to: '#' },
-    { name: 'Settings', to: '#' },
-    { name: 'Sign out', to: '#' },
+    { name: 'View My Profile', to: '/my-profile' },
+    { name: 'Edit Profile', to: '/edit-profile' },
 ]
 
 function classNames(...classes) {
@@ -31,6 +32,11 @@ function classNames(...classes) {
 }
 
 export default function Navbar() {
+    const { loading, data } = useQuery(QUERY_ME);
+
+    const userData = data?.me || {};
+    console.log("userData", userData)
+
     const logout = (event) => {
         event.preventDefault();
         Auth.logout();
@@ -103,9 +109,14 @@ export default function Navbar() {
                                             {/* Profile */}
                                             <Menu as="div" className="ml-3 relative">
                                                 <div>
-                                                    <Menu.Button className="bg-gray-800 flex text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
+                                                    <Menu.Button className="bg-gray-800 flex text-sm rounded-full hover:outline-none hover:ring-2 hover:ring-offset-2 hover:ring-offset-gray-800 hover:ring-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-emerald-600">
                                                         <span className="sr-only">Open user menu</span>
-                                                        <img className="h-8 w-8 rounded-full" src={user.imageUrl} alt="" />
+                                                        <NavLink
+                                                            key="my-profile"
+                                                            to="/my-profile"
+                                                        >
+                                                            <img className="h-8 w-8 rounded-full" src={user.imageUrl} alt="" />
+                                                        </NavLink>
                                                     </Menu.Button>
                                                 </div>
                                             </Menu>
@@ -118,15 +129,17 @@ export default function Navbar() {
                                         <div className="relative md:flex items-center justify-end md:flex-1 lg:w-0">
                                             <NavLink
                                                 to="/login"
-                                                className="ml-8 whitespace-nowrap px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:bg-teal-700 hover:text-white">
+                                                className="whitespace-nowrap px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:bg-teal-700 hover:text-white">
                                                 Log in
                                             </NavLink>
-                                            <NavLink
-                                                to="/signup"
-                                                className="hidden ml-8 whitespace-nowrap items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-emerald-600 hover:bg-emerald-500"
-                                            >
-                                                Sign up
-                                            </NavLink>
+                                            <div className="hidden md:ml-4 md:flex-shrink-0 md:flex md:items-center">
+                                                <NavLink
+                                                    to="/signup"
+                                                    className="ml-6 whitespace-nowrap items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-emerald-600 hover:bg-emerald-500"
+                                                >
+                                                    Sign up
+                                                </NavLink>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -158,13 +171,31 @@ export default function Navbar() {
                                 <div className="pt-4 pb-3 border-t border-gray-700">
                                     <div className="flex items-center px-5 sm:px-6">
                                         <div className="flex-shrink-0">
-                                            <img className="h-10 w-10 rounded-full" src={user.imageUrl} alt="" />
+                                            <NavLink
+                                                key="my-profile"
+                                                to="/my-profile"
+                                                className="bg-gray-800 flex text-sm rounded-full hover:outline-none hover:ring-2 hover:ring-offset-2 hover:ring-offset-gray-800 hover:ring-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-emerald-600"
+                                            >
+                                                <img className="h-10 w-10 rounded-full" src={user.imageUrl} alt="" />
+                                            </NavLink>
                                         </div>
                                         <div className="ml-3">
                                             <div className="text-base font-medium text-white">{user.name}</div>
-                                            <div className="text-sm font-medium text-gray-400">{user.email}</div>
+                                            <div className="text-sm font-medium text-gray-300">{userData.email}</div>
                                         </div>
                                     </div>
+                                        <div className="mt-3 px-2 space-y-1 sm:px-3">
+                                            {userNavigation.map((item) => (
+                                                <NavLink
+                                                    key={item.name}
+                                                    as="a"
+                                                    to={item.to}
+                                                    className="bg--900 block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:bg-teal-700 hover:text-white focus:bg-gray-800 focus:text-white"
+                                                >
+                                                    {item.name}
+                                                </NavLink>
+                                            ))}
+                                        </div>
                                 </div>
                             </Disclosure.Panel>
                         ) : (
