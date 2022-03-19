@@ -53,8 +53,8 @@ const DashboardProfiles = ({ profiles, title }) => {
       </div>
 
       <div className="flex justify-evenly">
-        <button className='font-bold text-lg sm:text-xl text-red-600' onClick={nextProfile}>Nah</button>
-        <button className='font-bold text-lg sm:text-xl text-emerald-600' onClick={goToMessage}>YASSS</button>
+        <button className='font-bold text-lg sm:text-xl text-red-600' onClick={nextProfile}>No</button>
+        <button className='font-bold text-lg sm:text-xl text-emerald-600' onClick={goToMessage}>Yes</button>
       </div>
 
     </div>
