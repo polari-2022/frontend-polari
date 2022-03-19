@@ -1,5 +1,27 @@
 import { gql } from '@apollo/client';
 
+export const QUERY_ME =gql`
+    query me {
+        me {
+            _id
+            email
+            profile{
+                _id
+                firstName
+                photo
+                attachmentStyle
+                genderIdentity
+                genderInterests
+                bio
+                birthdate
+                pronouns
+                sexualOrientation
+                currentLocation
+            }
+        }
+    }
+`;
+
 export const QUERY_SINGLE_USER = gql`
     query singleUser ($userId: ID!) {
         user(userId: $userId) {
