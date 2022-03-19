@@ -4,7 +4,7 @@ import { CheckIcon, SelectorIcon } from '@heroicons/react/solid'
 import { useQuery, useMutation } from '@apollo/client';
 import { ADD_PROFILE } from '../utils/mutation';
 
-import { QUERY_ME } from '../utils/query';
+import { QUERY_ME, QUERY_PROFILES } from '../utils/query';
 
 import Auth from '../utils/auth';
 
@@ -34,13 +34,13 @@ function classNames(...classes) {
 export default function Profile() {
     const [formState, setFormState] = useState({
         firstName: '',
-        photo: '',
+        photo: 'sun.png',
         genderInterests: '',
         bio: '',
         birthdate: '',
         pronouns: '',
         sexualOrientation: '',
-        currentLocation: '',
+        currentCity: '',
     });
 
     const { loading, data } = useQuery(QUERY_ME);
@@ -49,8 +49,10 @@ export default function Profile() {
 
     const userData = data?.me || {};
     // console.log("userData", userData)
+    const token = Auth.loggedIn() ? Auth.getToken() : null;
 
-    const [addProfile, { error }] = useMutation(ADD_PROFILE);
+    // const [addProfile, { error }] = useMutation(ADD_PROFILE);
+    const [addProfile, { error }] = useMutation(ADD_PROFILE); 
 
     // update state based on form input changes
     const handleChange = (event) => {
@@ -60,8 +62,11 @@ export default function Profile() {
             ...formState,
             [name]: value,
         });
-        // console.log("formState", formState)
+        console.log("formState", formState)
 
+        // if (name === "currentCity") {
+
+        // }
         setAlert(false)
     };
 
@@ -78,8 +83,8 @@ export default function Profile() {
                     userId: Auth.getUser().data._id,
                 },
             });
-
-            Auth.login(data.login.token);
+            console.log("Data", data)
+            Auth.login(token);
 
             // Navigate to the next step after POST
             // navigate(`/dashboard`);
@@ -384,6 +389,8 @@ export default function Profile() {
                                     type="text"
                                     name="currentCity"
                                     id="currentCity"
+                                    value={formState.currentCity}
+                                    onChange={handleChange}
                                     className="py-3 px-4 block w-full shadow-sm focus:ring-emerald-500 focus:border-emerald-500 border-gray-300 rounded-md"
                                 />
                             </div>
@@ -439,7 +446,7 @@ export default function Profile() {
                                     onChange={handleChange}
                                     rows={4}
                                     className="py-3 px-4 block w-full shadow-sm focus:ring-emerald-500 focus:border-emerald-500 border border-gray-300 rounded-md"
-                                    defaultValue={''}
+                                    // defaultValue={''}
                                 />
                             </div>
                         </div>

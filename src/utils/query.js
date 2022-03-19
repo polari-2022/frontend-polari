@@ -45,6 +45,7 @@ export const QUERY_PROFILES = gql`
             pronouns
             sexualOrientation
             currentCity
+            userId
             user {
                 _id
                 email

@@ -27,7 +27,7 @@ export const ADD_USER = gql`
 export const ADD_PROFILE = gql`
   mutation addProfile(
     $firstName: String!,
-    $photo: String!, 
+    $photo: String, 
     $attachmentStyle: String!, 
     $genderIdentity: String!, 
     $genderInterests: [String]!, 
@@ -36,10 +36,10 @@ export const ADD_PROFILE = gql`
     $pronouns: String,
     $sexualOrientation: String, 
     $currentCity: String!, 
-    $userId: ID!
+    $userId: String
   ){
       addProfile(
-        firstName: $firstname,
+        firstName: $firstName,
         photo: $photo,
         attachmentStyle: $attachmentStyle,
         genderIdentity: $genderIdentity,
@@ -53,7 +53,7 @@ export const ADD_PROFILE = gql`
       ){
         firstName,
         photo,
-        attchmentStyle,
+        attachmentStyle,
         genderIdentity,
         genderInterests,
         bio,
@@ -62,7 +62,6 @@ export const ADD_PROFILE = gql`
         sexualOrientation,
         currentCity,
         userId
-        token
         user {
           _id
           email
