@@ -18,7 +18,7 @@ const Dashboard = () => {
         ) : (
             <DashboardProfiles
                 profiles={profiles}
-                title="Love Matches"
+                title="Matches"
             />
         )}
         </>
