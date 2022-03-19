@@ -58,7 +58,7 @@ const DashboardProfiles = ({ profiles, title }) => {
       </div>
 
     </div>
-  );
+  )
 };
 
 export default DashboardProfiles;
