@@ -42,7 +42,7 @@ export default function Login() {
 
             // Navigate to the next step after POST
             // navigate(`/dashboard`);
-            navigate(`/profile`);
+            // navigate(`/profile`);
         } catch (e) {
             console.error(e);
             setAlert(true)
