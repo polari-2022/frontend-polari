@@ -1,0 +1,22 @@
+.yesbutton{
+    background-color: aquamarine;
+    margin: 1rem;
+}
+.nobutton{
+    background-color: lightpink;
+    margin: 1rem;
+}
+.profile{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* not sure if we need this  */
+.nonActive{
+    opacity: 0;
+}
+.activeeProfile{
+    opacity: 1;
+}
