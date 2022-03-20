@@ -36,7 +36,7 @@ export const ADD_PROFILE = gql`
     $pronouns: String,
     $sexualOrientation: String, 
     $currentCity: String!, 
-    $userId: String
+    $user: ID
   ){
       addProfile(
         firstName: $firstName,
@@ -49,7 +49,7 @@ export const ADD_PROFILE = gql`
         pronouns: $pronouns, 
         sexualOrientation: $sexualOrientation, 
         currentCity: $currentCity, 
-        userId: $userId
+        user: $user
       ){
         firstName,
         photo,
@@ -61,10 +61,8 @@ export const ADD_PROFILE = gql`
         pronouns,
         sexualOrientation,
         currentCity,
-        userId
         user {
           _id
-          email
         }
       }
     }
@@ -108,7 +106,7 @@ export const UPDATE_PROFILE = gql`
       pronouns,
       sexualOrientation,
       currentCity,
-      userId
+      user
     }
   }
 `;
@@ -119,7 +117,6 @@ export const REMOVE_THREAD = gql`
           _id
           text
           date
-          userId
     }
   }
 `;
@@ -130,7 +127,6 @@ export const REMOVE_MESSAGE = gql`
           _id
           text
           date
-          threadId
       }
   }
 `;
