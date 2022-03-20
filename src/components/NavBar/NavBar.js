@@ -9,11 +9,7 @@ import { QUERY_ME } from '../../utils/query';
 
 import Auth from '../../utils/auth';
 
-const loggedIn = false
-
 const user = {
-    name: 'Tom Cook',
-    email: 'tom@example.com',
     imageUrl:
         'https://images.unsplash.com/photo-1540304801084-0944beb20de7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80',
 }
@@ -27,15 +23,10 @@ const userNavigation = [
     { name: 'Edit Profile', to: '/edit-profile' },
 ]
 
-function classNames(...classes) {
-    return classes.filter(Boolean).join(' ')
-}
-
 export default function Navbar() {
     const { loading, data } = useQuery(QUERY_ME);
 
     const userData = data?.me || {};
-    // console.log("userData", userData)
 
     const logout = (event) => {
         event.preventDefault();
@@ -181,22 +172,22 @@ export default function Navbar() {
                                             </NavLink>
                                         </div>
                                         <div className="ml-3">
-                                            <div className="text-base font-medium text-white">{user.name}</div>
+                                            {/* <div className="text-base font-medium text-white">{user.name}</div> */}
                                             <div className="text-sm font-medium text-gray-300">{userData.email}</div>
                                         </div>
                                     </div>
-                                        <div className="mt-3 px-2 space-y-1 sm:px-3">
-                                            {userNavigation.map((item) => (
-                                                <NavLink
-                                                    key={item.name}
-                                                    as="a"
-                                                    to={item.to}
-                                                    className="bg--900 block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:bg-teal-700 hover:text-white focus:bg-gray-800 focus:text-white"
-                                                >
-                                                    {item.name}
-                                                </NavLink>
-                                            ))}
-                                        </div>
+                                    <div className="mt-3 px-2 space-y-1 sm:px-3">
+                                        {userNavigation.map((item) => (
+                                            <NavLink
+                                                key={item.name}
+                                                as="a"
+                                                to={item.to}
+                                                className="bg--900 block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:bg-teal-700 hover:text-white focus:bg-gray-800 focus:text-white"
+                                            >
+                                                {item.name}
+                                            </NavLink>
+                                        ))}
+                                    </div>
                                 </div>
                             </Disclosure.Panel>
                         ) : (
