@@ -5,6 +5,19 @@ export const QUERY_ME =gql`
         me {
             _id
             email
+            profile{
+                _id
+                firstName
+                photo
+                attachmentStyle
+                genderIdentity
+                genderInterests
+                bio
+                birthdate
+                pronouns
+                sexualOrientation
+                currentCity
+            }
         }
     }
 `;
@@ -14,6 +27,19 @@ export const QUERY_SINGLE_USER = gql`
         user(userId: $userId) {
             _id
             email
+            profile{
+                _id
+                firstName
+                photo
+                attachmentStyle
+                genderIdentity
+                genderInterests
+                bio
+                birthdate
+                pronouns
+                sexualOrientation
+                currentCity
+            }
         }
     }
 `;
@@ -61,6 +87,27 @@ export const QUERY_SINGLE_PROFILE = gql`
         }
     }
 `;
+export const QUERY_ONE_PROFILE_BY_USER = gql`
+    query userprofile($user:ID!){
+        userprofile(user:$user){
+            _id
+            firstName
+            photo
+            attachmentStyle
+            genderIdentity
+            genderInterests
+            bio
+            birthdate
+            pronouns
+            sexualOrientation
+            currentCity
+            user {
+                _id
+                email
+            }
+        }
+    }
+`;
 
 export const QUERY_THREADS = gql`
     query userThreads($user: ID!) {
@@ -84,6 +131,29 @@ export const QUERY_THREADS = gql`
         }
     }
 `;
+export const QUERY_MATCH_THREADS = gql`
+    query matchThreads($match: ID!) {
+        matchthreads(match: $match){
+            _id
+            text
+            date
+            user {
+                _id
+                email
+            }
+            match {
+                _id
+                email
+            }
+            messages{
+                _id
+                text
+                date
+            }
+        }
+    }
+`;
+
 
 export const QUERY_SINGLE_THREAD = gql`
     query singleThread($threadId: ID!) {
