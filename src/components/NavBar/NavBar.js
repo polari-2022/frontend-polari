@@ -1,7 +1,7 @@
 import { Fragment, useState } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
-import { BellIcon, MenuIcon, XIcon, ChatAltIcon } from '@heroicons/react/outline'
-import { UserCircleIcon } from '@heroicons/react/solid'
+import { BellIcon, MenuIcon, XIcon, ChatAltIcon, UserCircleIcon } from '@heroicons/react/outline'
+// import { UserCircleIcon } from '@heroicons/react/solid'
 // routing
 import { NavLink, Link } from 'react-router-dom'
 import { useQuery, useMutation } from '@apollo/client';
@@ -15,7 +15,7 @@ const user = {
     name: 'Tom Cook',
     email: 'tom@example.com',
     imageUrl:
-        'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+        'https://images.unsplash.com/photo-1540304801084-0944beb20de7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80',
 }
 const navigation = [
     { name: 'Attachment Styles', to: '/attachment-styles' },
@@ -35,7 +35,7 @@ export default function Navbar() {
     const { loading, data } = useQuery(QUERY_ME);
 
     const userData = data?.me || {};
-    console.log("userData", userData)
+    // console.log("userData", userData)
 
     const logout = (event) => {
         event.preventDefault();
@@ -115,7 +115,8 @@ export default function Navbar() {
                                                             key="my-profile"
                                                             to="/my-profile"
                                                         >
-                                                            <img className="h-8 w-8 rounded-full" src={user.imageUrl} alt="" />
+                                                            {/* <UserCircleIcon className="h-9 w-9 rounded-full bg-teal-700 text-black" aria-hidden="true" /> */}
+                                                            <img className="h-8 w-8 object-cover rounded-full" src={user.imageUrl} alt="" />
                                                         </NavLink>
                                                     </Menu.Button>
                                                 </div>
@@ -176,7 +177,7 @@ export default function Navbar() {
                                                 to="/my-profile"
                                                 className="bg-gray-800 flex text-sm rounded-full hover:outline-none hover:ring-2 hover:ring-offset-2 hover:ring-offset-gray-800 hover:ring-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-emerald-600"
                                             >
-                                                <img className="h-10 w-10 rounded-full" src={user.imageUrl} alt="" />
+                                                <img className="h-10 w-10 object-cover rounded-full" src={user.imageUrl} alt="" />
                                             </NavLink>
                                         </div>
                                         <div className="ml-3">
