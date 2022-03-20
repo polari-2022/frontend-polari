@@ -19,6 +19,7 @@ import Signup from '../src/pages/Signup'
 import Footer from './components/Footer/Footer'
 import Learn from './pages/Learn'
 import AddProfile from './pages/Add-Profile'
+import EditProfile from './pages/Edit-Profile'
 import Dashboard from './pages/Dashboard';
 
 
@@ -64,6 +65,7 @@ function App() {
           <Route path='/dashboard' element={<Dashboard />} />
 
           <Route path='/create-profile' element={<AddProfile attachment={attachment} />} />
+          <Route path='/edit-profile' element={<EditProfile />} />
         </Routes>
         <Footer />
       </div>
