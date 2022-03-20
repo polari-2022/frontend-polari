@@ -23,7 +23,29 @@ export const ADD_USER = gql`
     }
   }
 `;
-
+export const UPDATE_USER = gql`
+mutation updateUser($userId: ID!, $profile: ID!){
+  updateUser(userId:$userId, profile:$profile){
+    user{
+      _id
+      email
+      profile{
+          _id
+          firstName
+          photo
+          attachmentStyle
+          genderIdentity
+          genderInterests
+          bio
+          birthdate
+          pronouns
+          sexualOrientation
+          currentCity
+      }
+    }
+  }
+}
+`;
 export const ADD_PROFILE = gql`
   mutation addProfile(
     $firstName: String!,
@@ -110,6 +132,24 @@ export const UPDATE_PROFILE = gql`
     }
   }
 `;
+export const ADD_THREAD = gql`
+  mutation addThread($text:String, $date:DATE!,$user:ID, $match:ID){
+    addThread(text:$text, date:$date, user:$user, match:$match){
+      _id
+      text
+      date
+      user{
+        _id
+      }
+      match{
+        _id
+      }
+      messages{
+        _id
+      }
+    }
+  }
+`;
 
 export const REMOVE_THREAD = gql`
   mutation removeThread($threadId: ID!) {
@@ -117,6 +157,21 @@ export const REMOVE_THREAD = gql`
           _id
           text
           date
+    }
+  }
+`;
+export const ADD_MESSAGE = gql`
+  mutation addMessage($text:String, $date:DATE, $thread:ID, $user:ID){
+    addMessage(text:$text, date:$date, thread:$thread, user:$user){
+      _id
+      text
+      date
+      thread{
+        _id
+      }
+      user{
+        _id
+      }
     }
   }
 `;
