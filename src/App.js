@@ -47,7 +47,6 @@ const client = new ApolloClient({
 
 function App() {
   const [attachment, setAttachment] = useState('');
-  console.log("attachment", attachment)
 
   return (
     <ApolloProvider client={client}>
@@ -61,10 +60,10 @@ function App() {
           <Route path='/login' element={<Login />} />
           <Route path='/signup' element={<Signup />} />
           <Route path='/learn' element={<Learn setAttachment={setAttachment} />} />
-          <Route path='/create-profile' element={<AddProfile />} />
+          {/* <Route path='/create-profile' element={<AddProfile />} /> */}
           <Route path='/dashboard' element={<Dashboard />} />
 
-          {/* <Route path='/create-profile' element={<AddProfile attachment={attachment} />} /> */}
+          <Route path='/create-profile' element={<AddProfile attachment={attachment} />} />
         </Routes>
         <Footer />
       </div>
