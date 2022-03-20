@@ -5,19 +5,6 @@ export const QUERY_ME =gql`
         me {
             _id
             email
-            profile{
-                _id
-                firstName
-                photo
-                attachmentStyle
-                genderIdentity
-                genderInterests
-                bio
-                birthdate
-                pronouns
-                sexualOrientation
-                currentCity
-            }
         }
     }
 `;
@@ -45,7 +32,6 @@ export const QUERY_PROFILES = gql`
             pronouns
             sexualOrientation
             currentCity
-            userId
             user {
                 _id
                 email
@@ -77,8 +63,8 @@ export const QUERY_SINGLE_PROFILE = gql`
 `;
 
 export const QUERY_THREADS = gql`
-    query userThreads($userId: String!) {
-        threads(userId: $userId){
+    query userThreads($user: ID!) {
+        threads(user: $user){
             _id
             text
             date
@@ -95,7 +81,6 @@ export const QUERY_THREADS = gql`
                 text
                 date
             }
-            userId
         }
     }
 `;
@@ -119,14 +104,13 @@ export const QUERY_SINGLE_THREAD = gql`
                 date
                 threadId
             }
-            userId
         }
     }
 `;
 
 export const QUERY_MESSAGES = gql`
-    query threadMessages($threadId: String!) {
-        messages(threadId: $threadId) {
+    query threadMessages($thread: ID!) {
+        messages(thread: $thread) {
             _id
             text
             date
@@ -134,7 +118,6 @@ export const QUERY_MESSAGES = gql`
                 _id
                 email
             }
-            threadId
         }
     }
 `;

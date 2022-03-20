@@ -100,7 +100,7 @@ export default function Profile({ attachment }) {
                     birthdate: selectedBirthdate,
                     genderIdentity: selectedIdentity.id,
                     attachmentStyle: selectedAttachmentStyle.id,
-                    userId: Auth.getUser().data._id,
+                    user: Auth.getUser().data._id,
                 },
             });
             console.log("Data", data)
