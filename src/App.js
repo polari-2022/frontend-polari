@@ -21,6 +21,7 @@ import Learn from './pages/Learn'
 import AddProfile from './pages/Add-Profile'
 import EditProfile from './pages/Edit-Profile'
 import Dashboard from './pages/Dashboard';
+import Messages from './pages/Messages';
 
 
 const url = process.env.NODE_ENV === 'development'
@@ -66,6 +67,7 @@ function App() {
 
           <Route path='/create-profile' element={<AddProfile attachment={attachment} />} />
           <Route path='/edit-profile' element={<EditProfile />} />
+          <Route path='/messages' element={<Messages />} />
         </Routes>
         <Footer />
       </div>
