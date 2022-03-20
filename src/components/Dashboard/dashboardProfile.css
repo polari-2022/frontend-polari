@@ -14,9 +14,9 @@
 }
 
 /* not sure if we need this  */
-.nonActive{
-    opacity: 0;
-}
-.activeeProfile{
+/* .nonActive{
+    display: none;
+} */
+/* .activeProfile{
     opacity: 1;
-}
+} */
