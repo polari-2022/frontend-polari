@@ -208,7 +208,7 @@ export default function EditProfile({ attachment }) {
                                 <input
                                     type="text"
                                     name="firstName"
-                                    value={formState.firstName}
+                                    // value={formState.firstName}
                                     onChange={handleChange}
                                     id="firstName"
                                     className="py-3 px-4 block w-full shadow-sm focus:ring-emerald-500 focus:border-emerald-500 border-gray-300 rounded-md"
@@ -225,7 +225,6 @@ export default function EditProfile({ attachment }) {
                                 <input
                                     type="date"
                                     name="birthdate"
-                                    // value={formState.birthdate}
                                     onChange={handleChange}
                                     id="birthdate"
                                     className="py-3 px-4 block w-full shadow-sm focus:ring-emerald-500 focus:border-emerald-500 border-gray-300 rounded-md"
@@ -487,7 +486,6 @@ export default function EditProfile({ attachment }) {
                                     type="text"
                                     name="sexualOrientation"
                                     id="sexualOrientation"
-                                    value={formState.sexualOrientation}
                                     onChange={handleChange}
                                     className="py-3 px-4 block w-full shadow-sm focus:ring-emerald-500 focus:border-emerald-500 border-gray-300 rounded-md"
                                 />
@@ -557,7 +555,6 @@ export default function EditProfile({ attachment }) {
                                 <textarea
                                     id="bio"
                                     name="bio"
-                                    value={formState.bio}
                                     onChange={handleChange}
                                     rows={4}
                                     className="py-3 px-4 block w-full shadow-sm focus:ring-emerald-500 focus:border-emerald-500 border border-gray-300 rounded-md"
