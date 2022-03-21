@@ -24,6 +24,7 @@ import ViewProfile from './pages/ViewProfile'
 import EditProfile from './pages/Edit-Profile'
 import Dashboard from './pages/Dashboard';
 import Messages from './pages/Messages';
+import ChatPage from './pages/ChatPage';
 
 
 const url = process.env.NODE_ENV === 'development'
@@ -72,6 +73,7 @@ function App() {
           <Route path='/edit-profile' element={<EditProfile />} />
           <Route path='/my-profile' element={<ViewProfile />} />
           <Route path='/messages' element={<Messages />} />
+          <Route path='/chat' element={<ChatPage />} />
         </Routes>
         <Footer />
       </div>
