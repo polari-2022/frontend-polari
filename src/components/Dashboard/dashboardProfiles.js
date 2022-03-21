@@ -11,7 +11,7 @@ const DashboardProfiles = ({ profiles, title }) => {
   const [current, setCurrent] = useState(0)
   let navigate = useNavigate();
 
-  Auth.loggedIn() && Auth.getUser().data.email  ? (console.log('logged in! yay')) :(console.log('please signup'))
+  // Auth.loggedIn() && Auth.getUser().data.email  ? (console.log('logged in! yay')) :(console.log('please signup'))
 
   const {loading, data} = useQuery(QUERY_ONE_PROFILE_BY_USER, {variables:{user:Auth.getUser().data._id}});
   const [addThread, {error}] = useMutation(ADD_THREAD)
@@ -86,9 +86,11 @@ const DashboardProfiles = ({ profiles, title }) => {
   }
    Lovers();
   // console.log("current", current)
-  let currentProfileName = profiles[current].firstName
-  let currentProfileID = profiles[current].user
-  let currentProfileUserID = currentProfileID._id
+  let currentProfile =finalMatchArray[current]
+// console.log("currentprofile", currentProfile)
+  // let currentProfileName =profiles[current].firstName
+  // let currentProfileID =profiles[current].user
+  // let currentProfileUserID = currentProfileID._id
   // console.log("currentProfile", currentProfileID)
   // console.log("user ID", userId)
   const nextProfile = () => {
@@ -99,7 +101,9 @@ const DashboardProfiles = ({ profiles, title }) => {
   const goToMessage = async (event) => {
     // useMutations to addThread ! 
     event.preventDefault();
-
+    let currentProfileName =currentProfile.firstName
+    let currentProfileID =currentProfile.user
+    let currentProfileUserID = currentProfileID._id
     try{
       const { data } = await addThread({
         variables:{
@@ -113,6 +117,8 @@ const DashboardProfiles = ({ profiles, title }) => {
       // console.log("Data",data)
       // Navigate to the next step after POST
       await navigate(`/messages`);
+      window.location.reload(false);
+
       // alert('make function to go the messages')
       }catch(error){
         console.error(error)
@@ -121,18 +127,8 @@ const DashboardProfiles = ({ profiles, title }) => {
   
     }
     // messages
-    // console.log ("users matches ", finalMatchArray)
     let length = finalMatchArray.length
   
-
-  // const nextProfile = () => {
-  //   setCurrent(current === length - 1 ? 0 : current + 1)
-  // }
-  // //   console.log(current)
-  // const goToMessage = () => {
-  //   alert('make function to go the messages')
-
-  // }
 
   if (!finalMatchArray.length) {
     return <h3 className="mt-10 text-3xl font-extrabold text-center tracking-tight sm:text-4xl">No Profiles Yet or No Matches </h3>;
@@ -184,28 +180,7 @@ const DashboardProfiles = ({ profiles, title }) => {
         </button>
       </div>
     </div>
-    // <div>
-    //   <div className="text-center">
-    //     <h2 className="mt-12 mb-16 text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl">{title}</h2>
-    //   </div>
 
-    //   <div className='flex justify-center profile'>
-    //     {profiles.map((profile, index) => {
-    //       return (
-    //         <div className={index === current ? 'activeProfile' : 'nonActive'} key={index}>
-    //           {index === current && (< OneProfile profile={profile} />)}
-
-    //         </div>
-    //       )
-    //     })}
-    //   </div>
-
-    //   <div className="flex justify-evenly">
-    //     <button className='font-bold text-lg sm:text-xl text-red-600' onClick={nextProfile}>No</button>
-    //     <button className='font-bold text-lg sm:text-xl text-emerald-600' onClick={goToMessage}>Yes</button>
-    //   </div>
-
-    // </div>
   )
 };
 
