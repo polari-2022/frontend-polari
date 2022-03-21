@@ -7,9 +7,6 @@ import Auth from '../utils/auth';
 
 
 export default function Message(){
-
-    Auth.loggedIn() && Auth.getUser().data.email  ? (console.log('logged in! yay')) : (window.location.replace('/login'))
-
     
     const {loading, data} = useQuery(QUERY_THREADS, {
         variables:{ user: Auth.getUser().data._id}
