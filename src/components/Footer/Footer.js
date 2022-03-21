@@ -6,6 +6,7 @@ const navigation = {
       { name: 'Our Team', href: '/our-team' },
       { name: 'Log in', href: '/login' },
       { name: 'Sign up', href: '/signup' },
+      { name: 'FAQ', href: '/faq' },
     ],
     social: [
       {
@@ -23,7 +24,7 @@ const navigation = {
       },
       {
         name: 'Instagram',
-        href: '#',
+        href: 'https://www.instagram.com/polari_dating/',
         icon: (props) => (
           <svg fill="currentColor" viewBox="0 0 24 24" {...props}>
             <path

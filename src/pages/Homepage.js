@@ -78,6 +78,9 @@ export default function Homepage() {
                                 <p>
                                     We encourage you to discuss your attachment style with your matches to grow together as a team for all kinds of relationships, casual or serious.
                                 </p>
+                                <p className='mt-14 font-medium text-lg'>
+                                    What does "Polari" mean? Check out our <a className='hover:text-teal-500 no-underline text-teal-700' target="_blank" rel="noreferrer" href="/faq">FAQ</a>
+                                </p>
                             </div>
                         </div>
                     </div>
