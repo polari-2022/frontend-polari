@@ -17,7 +17,7 @@ const people = [
     },
     {
         name: 'Brianna Woodruff',
-        role: 'Front End Engineer',
+        role: 'Full Stack Engineer',
         imageUrl:
             'https://avatars.githubusercontent.com/u/89707381?v=4',
         gitHubUrl: 'https://github.com/briannawoodruff',
@@ -33,7 +33,7 @@ const people = [
     },
     {
         name: 'Edyta Tarczynski',
-        role: 'Front End Engineer',
+        role: 'Full Stack Engineer',
         imageUrl:
             'https://avatars.githubusercontent.com/u/87889660?v=4',
         gitHubUrl: 'https://github.com/edytatar',
