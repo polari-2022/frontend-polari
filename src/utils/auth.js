@@ -39,6 +39,12 @@ class AuthService {
     // window.location.reload();
   }
 
+  editProfile(idToken) {
+    localStorage.setItem('id_token', idToken);
+    window.location.assign('/my-profile');
+    // window.location.reload();
+  }
+
   logout() {
     localStorage.removeItem('id_token');
     window.location.assign('/');
