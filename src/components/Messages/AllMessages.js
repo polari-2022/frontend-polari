@@ -1,7 +1,31 @@
+import { useQuery, useMutation } from '@apollo/client';
+import { REMOVE_THREAD } from '../../utils/mutation';
+import Auth from '../../utils/auth';
+
 export default function AllMessages({ threads }) {
   const chat = (event) => {
     event.preventDefault()
     window.location.replace('/chat')
+  }
+  const [removeThread, {error}] = useMutation(REMOVE_THREAD)
+  const userId =Auth.getUser().data._id
+  let id
+  
+  const deleteThread = async(event) =>{
+    event.preventDefault()
+   id = document.querySelector('.id').innerHTML
+    // console.log("id",id)
+    try{
+      const {data} = await removeThread({
+        variables:{
+          threadId:id
+        }
+      })
+      window.location.reload(false);
+      // alert("it worked!")
+    }catch(error){
+        console.error(error)
+      }
   }
 
   return (
@@ -69,6 +93,7 @@ export default function AllMessages({ threads }) {
                         <p className="text-base font-medium text-gray-900 truncate">{thread.text}</p>
                       </div>
                       <div>
+                        <button onClick={deleteThread}>DELETE</button>
                         <button
                           type="button"
                           onClick={chat}
