@@ -34,7 +34,7 @@ const DashboardProfiles = ({ profiles, title }) => {
     else if(userInterest === 'men'){
       userSingularInterest = 'man'
     }
-    else if(userInterest === 'non-binany'){
+    else if(userInterest === 'non-binary'){
       userSingularInterest = 'non-binary'
     }
   }
@@ -50,7 +50,7 @@ const DashboardProfiles = ({ profiles, title }) => {
     else if(userIdentity === 'man'){
       userPluralIdentity = 'men'
     }
-    else if(userIdentity === 'non-binany'){
+    else if(userIdentity === 'non-binary'){
       userPluralIdentity = 'non-binary'
     }else(userPluralIdentity = 'non-binary')
   }
