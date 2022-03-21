@@ -120,7 +120,7 @@ export const UPDATE_PROFILE = gql`
       _id
       firstName,
       photo,
-      attchmentStyle,
+      attachmentStyle,
       genderIdentity,
       genderInterests,
       bio,
@@ -128,7 +128,6 @@ export const UPDATE_PROFILE = gql`
       pronouns,
       sexualOrientation,
       currentCity,
-      user
     }
   }
 `;

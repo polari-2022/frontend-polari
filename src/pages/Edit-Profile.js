@@ -2,7 +2,7 @@ import { Fragment, useState } from 'react'
 import { Listbox, Transition } from '@headlessui/react'
 import { CheckIcon, SelectorIcon, XCircleIcon } from '@heroicons/react/solid'
 import { useQuery, useMutation } from '@apollo/client';
-import { ADD_PROFILE } from '../utils/mutation';
+import { UPDATE_PROFILE } from '../utils/mutation';
 import moment from 'moment';
 
 import { QUERY_ME, QUERY_PROFILES } from '../utils/query';
@@ -55,7 +55,18 @@ export default function EditProfile({ attachment }) {
  
     const token = Auth.loggedIn() ? Auth.getToken() : null;
 
-    const [addProfile, { error }] = useMutation(ADD_PROFILE);
+    const { loading, data } = useQuery(QUERY_PROFILES);
+    //   console.log('data', data)
+    const profiles = data?.profiles || [];
+    // console.log("profiles", profiles)
+
+    const userProfileID = Auth.getUser().data._id
+
+    const myProfile = profiles.filter(profile => profile.user._id === userProfileID)
+    const myProfileId = myProfile[0]._id
+    // console.log("myProfileId", myProfileId)
+
+    const [updateProfile, { error }] = useMutation(UPDATE_PROFILE, {variables:{profileId:myProfileId}});
 
     // update state based on form input changes
     const handleChange = (event) => {
@@ -84,7 +95,7 @@ export default function EditProfile({ attachment }) {
                 ...formState,
                 [name]: value,
             });
-            console.log("formState", formState)
+            // console.log("formState", formState)
         }
     };
 
@@ -93,17 +104,18 @@ export default function EditProfile({ attachment }) {
         event.preventDefault();
         // console.log(formState);
         try {
-            const { data } = await addProfile({
+            const { data } = await updateProfile({
                 variables: {
                     ...formState,
+                    // profileId: myProfile[0]._id,
                     pronouns: selectedPronouns.name,
                     birthdate: selectedBirthdate,
                     genderIdentity: selectedIdentity.id,
                     attachmentStyle: selectedAttachmentStyle.id,
-                    user: Auth.getUser().data._id,
+                    // user: Auth.getUser().data._id,
                 },
             });
-            console.log("Data", data)
+            // console.log("Data", data)
             Auth.login(token);
         } catch (e) {
             console.error(e);
