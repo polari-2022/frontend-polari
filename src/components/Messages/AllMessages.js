@@ -15,7 +15,6 @@ export default function AllMessages({ threads }) {
   const deleteThread = async (event) => {
     event.preventDefault()
     id = document.querySelector('.id').innerHTML
-    // console.log("id",id)
     try {
       const { data } = await removeThread({
         variables: {
@@ -23,7 +22,6 @@ export default function AllMessages({ threads }) {
         }
       })
       window.location.reload(false);
-      // alert("it worked!")
     } catch (error) {
       console.error(error)
     }

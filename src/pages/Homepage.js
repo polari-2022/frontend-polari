@@ -11,9 +11,8 @@ export default function Homepage() {
                     <div className="hidden lg:block bg-gray-50 absolute top-0 bottom-0 left-3/4 w-screen" />
                     <div className="mx-auto text-base max-w-prose lg:grid lg:grid-cols-2 lg:gap-8 lg:max-w-none">
                         <div>
-                            {/* <h2 className="text-base text-indigo-600 font-semibold tracking-wide uppercase">Case Study</h2> */}
                             <h3 className="mt-2 text-center text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
-                               Philosophy
+                                Philosophy
                             </h3>
                         </div>
                     </div>

@@ -96,7 +96,6 @@ export default function Contact() {
                                     id="first-name"
                                     value={toSend.firstname}
                                     onChange={(event) => handleInput("firstname", event.target.value)}
-                                    // autoComplete="given-name"
                                     className="py-3 px-4 block w-full shadow-sm focus:ring-emerald-500 focus:border-emerald-500 border-gray-300 rounded-md"
                                 />
                             </div>
@@ -114,7 +113,6 @@ export default function Contact() {
                                     id="last-name"
                                     value={toSend.lastname}
                                     onChange={(event) => handleInput("lastname", event.target.value)}
-                                    // autoComplete="family-name"
                                     className="py-3 px-4 block w-full shadow-sm focus:ring-emerald-500 focus:border-emerald-500 border-gray-300 rounded-md"
                                 />
                             </div>
@@ -132,7 +130,6 @@ export default function Contact() {
                                     type="email"
                                     value={toSend.email}
                                     onChange={(event) => handleInput("email", event.target.value)}
-                                    // autoComplete="email"
                                     className="py-3 px-4 block w-full shadow-sm focus:ring-emerald-500 focus:border-emerald-500 border-gray-300 rounded-md"
                                 />
                             </div>
@@ -164,7 +161,6 @@ export default function Contact() {
                                     id="phone-number"
                                     value={toSend.phonenumber}
                                     onChange={(event) => handleInput("phonenumber", event.target.value)}
-                                    // autoComplete="tel"
                                     className="py-3 px-4 block w-full pl-20 focus:ring-emerald-500 focus:border-emerald-500 border-gray-300 rounded-md"
                                     placeholder="+1 (555) 987-6543"
                                 />

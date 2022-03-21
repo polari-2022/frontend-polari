@@ -1,4 +1,3 @@
-import './App.css';
 import { useState } from "react";
 import { Routes, Route } from 'react-router-dom';
 import {
@@ -66,9 +65,7 @@ function App() {
           <Route path='/login' element={<Login />} />
           <Route path='/signup' element={<Signup />} />
           <Route path='/learn' element={<Learn setAttachment={setAttachment} />} />
-          {/* <Route path='/create-profile' element={<AddProfile />} /> */}
           <Route path='/dashboard' element={<Dashboard />} />
-
           <Route path='/create-profile' element={<AddProfile attachment={attachment} />} />
           <Route path='/edit-profile' element={<EditProfile />} />
           <Route path='/my-profile' element={<ViewProfile />} />

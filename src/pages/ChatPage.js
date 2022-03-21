@@ -1,8 +1,6 @@
 // import { useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 import { QUERY_SINGLE_THREAD } from '../utils/query';
-import { QUERY_THREADS } from '../utils/query';
-import Chat from '../components/Messages/Chat'
 import Auth from '../utils/auth';
 import { InformationCircleIcon } from '@heroicons/react/solid'
 

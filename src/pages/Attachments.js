@@ -119,8 +119,8 @@ export default function Attachments() {
                                 height={873}
                             />
                             <figcaption className="mt-3 flex text-sm text-gray-500">
-                                        <CameraIcon className="flex-none w-5 h-5 text-gray-400" aria-hidden="true" />
-                                        <span className="ml-2" ><a className='hover:text-teal-400 no-underline text-gray-500' target="_blank" rel="noreferrer" href="https://unsplash.com/@whynottogoforit">Photograph by Renate Vanaga</a> </span>
+                                <CameraIcon className="flex-none w-5 h-5 text-gray-400" aria-hidden="true" />
+                                <span className="ml-2" ><a className='hover:text-teal-400 no-underline text-gray-500' target="_blank" rel="noreferrer" href="https://unsplash.com/@whynottogoforit">Photograph by Renate Vanaga</a> </span>
                             </figcaption>
                         </figure>
                         <h2>Avoidant Attachment</h2>
@@ -202,14 +202,6 @@ export default function Attachments() {
                                 alt=""
                             />
                             <div className="relative px-7 mt-10">
-                                {/* LOGO WITH POLARI HERE? */}
-                                {/* <div>
-                                    <img
-                                    className="h-12"
-                                    src="https://tailwindui.com/img/logos/workcation.svg?color=white"
-                                    alt="Workcation"
-                                    />
-                                </div> */}
                                 <div className="absolute inset-0 bg-teal-800 pt-64 pb-10 shadow-xl overflow-hidden" />
                                 <div className="mt-8">
                                     <div className="relative text-lg font-medium text-white md:flex-grow divide-y divide-emerald-600">
@@ -218,9 +210,9 @@ export default function Attachments() {
                                             <h2>Recommended Read and Resource:</h2>
                                         </div>
                                         <div className="font-normal pt-3">
-                                            We highly recommend the book 
+                                            We highly recommend the book
                                             <p>
-                                                <a className='text-teal-300 hover:text-teal-400 underline' target="_blank" rel="noreferrer" href="https://www.attachedthebook.com/wordpress/buy-the-book/">Attached: The New Science of Adult Attachment by Amir Levine, M.D. and Rachel S.F. Heller, M.A.</a> 
+                                                <a className='text-teal-300 hover:text-teal-400 underline' target="_blank" rel="noreferrer" href="https://www.attachedthebook.com/wordpress/buy-the-book/">Attached: The New Science of Adult Attachment by Amir Levine, M.D. and Rachel S.F. Heller, M.A.</a>
                                             </p>
                                             to find further insight on attachment styles.
                                         </div>

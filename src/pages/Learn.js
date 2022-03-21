@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { useNavigate } from 'react-router-dom';
 
 const categories = [
@@ -34,8 +33,6 @@ const categories = [
 ]
 
 export default function Learn( { setAttachment }) {
-    // const [attachment, setAttachment] = useState('');
-    // console.log("attachment", attachment)
     let navigate = useNavigate();
 
     const handleFormSubmit = async (event) => {

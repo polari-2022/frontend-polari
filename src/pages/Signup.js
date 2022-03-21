@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { green } from "tailwindcss/colors";
 import { XCircleIcon } from '@heroicons/react/solid'
 import { usePasswordValidation } from "../hooks/usePasswordValidation";
 import { useNavigate } from 'react-router-dom';
@@ -24,28 +23,21 @@ export default function Signup() {
             [name]: value,
         });
         setAlert(false)
-        // console.log("formState", formState)
 
         if (name === "password") {
             setPasswordVal({ ...passwordVal, password: event.target.value });
-            // console.log("setPassword", passwordVal)
         }
     };
 
     const handleFormSubmit = async (event) => {
         event.preventDefault();
-        // console.log(formState);
         if (match) {
-            // console.log("match", true)
             try {
                 const { data } = await addUser({
                     variables: { ...formState },
                 });
 
                 Auth.signup(data.addUser.token);
-
-            // Navigate to the next step after POST
-            // navigate(`/learn`);
             } catch (e) {
                 console.error(e);
             }
@@ -107,7 +99,6 @@ export default function Signup() {
                                         name="email"
                                         type="email"
                                         value={formState.email}
-                                        // autoComplete="email"
                                         onChange={handleChange}
                                         required
                                         className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-emerald-500 focus:border-emerald-500 sm:text-sm"
@@ -126,7 +117,6 @@ export default function Signup() {
                                         name="password"
                                         type="password"
                                         onChange={setFirst}
-                                        // autoComplete="current-password"
                                         required
                                         className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-emerald-500 focus:border-emerald-500 sm:text-sm"
                                     />
@@ -145,7 +135,6 @@ export default function Signup() {
                                         type="password"
                                         value={formState.password}
                                         onChange={handleChange}
-                                        // autoComplete="current-password"
                                         required
                                         className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-emerald-500 focus:border-emerald-500 sm:text-sm"
                                     />
