@@ -42,6 +42,10 @@ function classNames(...classes) {
 }
 
 export default function EditProfile({ attachment }) {
+    if (!Auth.loggedIn()) {
+        window.location.replace('/login')
+    }
+
     const [formState, setFormState] = useState({
         firstName: '',
         photo: '',
