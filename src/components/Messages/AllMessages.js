@@ -10,7 +10,7 @@ export default function AllMessages({ threads }) {
   }
   const [removeThread, { error }] = useMutation(REMOVE_THREAD)
   const userId = Auth.getUser().data._id
-  let id
+  let id;
 
   const deleteThread = async (event) => {
     event.preventDefault()
