@@ -41,7 +41,7 @@ const DashboardProfiles = ({ profiles, title }) => {
   convertToSingular()
   
   let userIdentity = userData.genderIdentity
-  console.log("user identity", userIdentity)
+  // console.log("user identity", userIdentity)
   let userPluralIdentity
   function convertToPlural(){
     if(userIdentity === 'woman'){
@@ -61,20 +61,20 @@ const DashboardProfiles = ({ profiles, title }) => {
   function  Lovers(){
       // remove logged in user 
       const removeMes =  profiles.filter(profile => profile._id !== userProfileID )
-      // filter for user's interests and compare with the profiles gender idenity 
+      // filter for user's interests and compare with the profiles gender identity 
       const interests = removeMes.filter(profile => profile.genderIdentity === userSingularInterest)
       // filter for user's genderIndentity to equal profile interest 
-      const idenity = interests.filter(profile => profile.genderInterests === userPluralIdentity)  
+      const identity = interests.filter(profile => profile.genderInterests === userPluralIdentity)  
       // filter for user's attachment Styles and compare with profiles attachment styles
       let attachmentStyleFilter 
       function attachmentStyle(){
-        if( userAttachmentStyle === 'avoident'){
-          attachmentStyleFilter = idenity.filter(profile => profile.attachmentStyle !== 'anxious')
+        if( userAttachmentStyle === 'avoidant'){
+          attachmentStyleFilter = identity.filter(profile => profile.attachmentStyle !== 'anxious')
         }else if( userAttachmentStyle === 'anxious'){
-          attachmentStyleFilter = idenity.filter(profile => profile.attachmentStyle !== 'avoident')
+          attachmentStyleFilter = identity.filter(profile => profile.attachmentStyle !== 'avoidant')
         }else if(userAttachmentStyle === 'secure'){
-          attachmentStyleFilter = idenity 
-        }else( attachmentStyleFilter = idenity)
+          attachmentStyleFilter = identity 
+        }else( attachmentStyleFilter = identity)
       }
       attachmentStyle();
       // filter for users location and profile's locations 
@@ -120,7 +120,8 @@ const DashboardProfiles = ({ profiles, title }) => {
   
   
     }
-    console.log ("users matches ", finalMatchArray)
+    // messages
+    // console.log ("users matches ", finalMatchArray)
     let length = finalMatchArray.length
   
 
