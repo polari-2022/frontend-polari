@@ -6,7 +6,6 @@ import Auth from '../utils/auth';
 
 const ViewProfile = () => {
   const { loading, data } = useQuery(QUERY_PROFILES);
-//   console.log('data', data)
   const profiles = data?.profiles || [];
 
   return (

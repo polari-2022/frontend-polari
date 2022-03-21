@@ -30,19 +30,16 @@ class AuthService {
   login(idToken) {
     localStorage.setItem('id_token', idToken);
     window.location.assign('/dashboard');
-    // window.location.reload();
   }
 
   signup(idToken) {
     localStorage.setItem('id_token', idToken);
     window.location.assign('/learn');
-    // window.location.reload();
   }
 
   editProfile(idToken) {
     localStorage.setItem('id_token', idToken);
     window.location.assign('/my-profile');
-    // window.location.reload();
   }
 
   logout() {

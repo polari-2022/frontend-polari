@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { XCircleIcon } from '@heroicons/react/solid'
-import { useNavigate, Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 import { LOGIN_USER } from '../utils/mutation';
 
@@ -12,7 +11,6 @@ export default function Login() {
         password: '' 
     });
     const [login, { error, data }] = useMutation(LOGIN_USER);
-    // let navigate = useNavigate();
 
     const [alert, setAlert] = useState(false);
     
@@ -24,7 +22,6 @@ export default function Login() {
             ...formState,
             [name]: value,
         });
-        // console.log("formState", formState)
 
         setAlert(false)
     };
@@ -32,17 +29,13 @@ export default function Login() {
     // submit form
     const handleFormSubmit = async (event) => {
         event.preventDefault();
-        // console.log(formState);
         try {
             const { data } = await login({
                 variables: { ...formState },
             });
 
             Auth.login(data.login.token);
-
-            // Navigate to the next step after POST
-            // navigate(`/dashboard`);
-            // navigate(`/profile`);
+            
         } catch (e) {
             console.error(e);
             setAlert(true)
@@ -80,7 +73,6 @@ export default function Login() {
                                         name="email"
                                         type="email"
                                         value={formState.email}
-                                        // autoComplete="email"
                                         onChange={handleChange}
                                         required
                                         className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-emerald-500 focus:border-emerald-500 sm:text-sm"
@@ -99,7 +91,6 @@ export default function Login() {
                                         name="password"
                                         type="password"
                                         value={formState.password}
-                                        // autoComplete="current-password"
                                         onChange={handleChange}
                                         required
                                         className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-emerald-500 focus:border-emerald-500 sm:text-sm"

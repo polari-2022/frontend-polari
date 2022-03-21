@@ -1,8 +1,6 @@
 import { Fragment, useState } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
-import { BellIcon, MenuIcon, XIcon, ChatAltIcon, UserCircleIcon } from '@heroicons/react/outline'
-// import { UserCircleIcon } from '@heroicons/react/solid'
-// routing
+import { BellIcon, MenuIcon, XIcon, ChatAltIcon } from '@heroicons/react/outline'
 import { NavLink, Link } from 'react-router-dom'
 import { useQuery, useMutation } from '@apollo/client';
 import { QUERY_ME } from '../../utils/query';
@@ -112,7 +110,6 @@ export default function Navbar() {
                                                             key="my-profile"
                                                             to="/my-profile"
                                                         >
-                                                            {/* <UserCircleIcon className="h-9 w-9 rounded-full bg-teal-700 text-black" aria-hidden="true" /> */}
                                                             <img className="h-8 w-8 object-cover rounded-full" src={user.imageUrl} alt="" />
                                                         </NavLink>
                                                     </Menu.Button>
@@ -178,7 +175,6 @@ export default function Navbar() {
                                             </NavLink>
                                         </div>
                                         <div className="ml-3">
-                                            {/* <div className="text-base font-medium text-white">{user.name}</div> */}
                                             <div className="text-sm font-medium text-gray-300">{userData.email}</div>
                                         </div>
                                     </div>

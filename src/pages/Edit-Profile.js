@@ -5,7 +5,7 @@ import { useQuery, useMutation } from '@apollo/client';
 import { UPDATE_PROFILE } from '../utils/mutation';
 import moment from 'moment';
 
-import { QUERY_ME, QUERY_PROFILES } from '../utils/query';
+import { QUERY_PROFILES } from '../utils/query';
 
 import Auth from '../utils/auth';
 
@@ -60,15 +60,13 @@ export default function EditProfile({ attachment }) {
     const token = Auth.loggedIn() ? Auth.getToken() : null;
 
     const { loading, data } = useQuery(QUERY_PROFILES);
-    //   console.log('data', data)
+   
     const profiles = data?.profiles || [];
-    // console.log("profiles", profiles)
 
     const userProfileID = Auth.getUser().data._id
 
     const myProfile = profiles.filter(profile => profile.user._id === userProfileID)
     const myProfileId = myProfile[0]._id
-    // console.log("myProfileId", myProfileId)
 
     const [updateProfile, { error }] = useMutation(UPDATE_PROFILE, { variables: { profileId: myProfileId } });
 
@@ -99,27 +97,22 @@ export default function EditProfile({ attachment }) {
                 ...formState,
                 [name]: value,
             });
-            // console.log("formState", formState)
         }
     };
 
     // submit form
     const handleFormSubmit = async (event) => {
         event.preventDefault();
-        // console.log(formState);
         try {
             const { data } = await updateProfile({
                 variables: {
                     ...formState,
-                    // profileId: myProfile[0]._id,
                     pronouns: selectedPronouns.name,
                     birthdate: selectedBirthdate,
                     genderIdentity: selectedIdentity.id,
                     attachmentStyle: selectedAttachmentStyle.id,
-                    // user: Auth.getUser().data._id,
                 },
             });
-            // console.log("Data", data)
             Auth.editProfile(token);
         } catch (e) {
             console.error(e);
@@ -208,7 +201,7 @@ export default function EditProfile({ attachment }) {
                                 <input
                                     type="text"
                                     name="firstName"
-                                    // value={formState.firstName}
+                                    
                                     onChange={handleChange}
                                     id="firstName"
                                     className="py-3 px-4 block w-full shadow-sm focus:ring-emerald-500 focus:border-emerald-500 border-gray-300 rounded-md"
@@ -487,7 +480,6 @@ export default function EditProfile({ attachment }) {
                                     type="text"
                                     name="currentCity"
                                     id="currentCity"
-                                    // value={formState.currentCity}
                                     onChange={handleChange}
                                     className="py-3 px-4 block w-full shadow-sm focus:ring-emerald-500 focus:border-emerald-500 border-gray-300 rounded-md"
                                 />
@@ -508,7 +500,6 @@ export default function EditProfile({ attachment }) {
                                     type="text"
                                     name="photo"
                                     id="photo"
-                                    // value={formState.currentCity}
                                     onChange={handleChange}
                                     className="py-3 px-4 block w-full shadow-sm focus:ring-emerald-500 focus:border-emerald-500 border-gray-300 rounded-md"
                                 />
@@ -527,7 +518,6 @@ export default function EditProfile({ attachment }) {
                                     onChange={handleChange}
                                     rows={4}
                                     className="py-3 px-4 block w-full shadow-sm focus:ring-emerald-500 focus:border-emerald-500 border border-gray-300 rounded-md"
-                                // defaultValue={''}
                                 />
                             </div>
                         </div>

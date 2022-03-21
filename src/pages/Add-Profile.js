@@ -1,11 +1,9 @@
 import { Fragment, useState } from 'react'
 import { Listbox, Transition } from '@headlessui/react'
 import { CheckIcon, SelectorIcon, XCircleIcon } from '@heroicons/react/solid'
-import { useQuery, useMutation } from '@apollo/client';
+import { useMutation } from '@apollo/client';
 import { ADD_PROFILE } from '../utils/mutation';
 import moment from 'moment';
-
-import { QUERY_ME, QUERY_PROFILES } from '../utils/query';
 
 import Auth from '../utils/auth';
 
@@ -88,14 +86,12 @@ export default function Profile({ attachment }) {
                 ...formState,
                 [name]: value,
             });
-            // console.log("formState", formState)
         }
     };
 
     // submit form
     const handleFormSubmit = async (event) => {
         event.preventDefault();
-        // console.log(formState);
         try {
             const { data } = await addProfile({
                 variables: {
@@ -498,7 +494,6 @@ export default function Profile({ attachment }) {
                                     type="text"
                                     name="photo"
                                     id="photo"
-                                    // value={formState.currentCity}
                                     onChange={handleChange}
                                     className="py-3 px-4 block w-full shadow-sm focus:ring-emerald-500 focus:border-emerald-500 border-gray-300 rounded-md"
                                 />
@@ -519,7 +514,6 @@ export default function Profile({ attachment }) {
                                     onChange={handleChange}
                                     rows={4}
                                     className="py-3 px-4 block w-full shadow-sm focus:ring-emerald-500 focus:border-emerald-500 border border-gray-300 rounded-md"
-                                // defaultValue={''}
                                 />
                             </div>
                         </div>
