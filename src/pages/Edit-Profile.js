@@ -116,7 +116,7 @@ export default function EditProfile({ attachment }) {
                 },
             });
             // console.log("Data", data)
-            Auth.login(token);
+            Auth.editProfile(token);
         } catch (e) {
             console.error(e);
             setAlert(true)
