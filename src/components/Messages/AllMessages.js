@@ -1,4 +1,5 @@
 import { useQuery, useMutation } from '@apollo/client';
+import { TrashIcon } from '@heroicons/react/outline'
 import { REMOVE_THREAD } from '../../utils/mutation';
 import Auth from '../../utils/auth';
 
@@ -7,25 +8,25 @@ export default function AllMessages({ threads }) {
     event.preventDefault()
     window.location.replace('/chat')
   }
-  const [removeThread, {error}] = useMutation(REMOVE_THREAD)
-  const userId =Auth.getUser().data._id
-  let id
-  
-  const deleteThread = async(event) =>{
+  const [removeThread, { error }] = useMutation(REMOVE_THREAD)
+  const userId = Auth.getUser().data._id
+  let id;
+
+  const deleteThread = async (event) => {
     event.preventDefault()
-   id = document.querySelector('.id').innerHTML
+    id = document.querySelector('.id').innerHTML
     // console.log("id",id)
-    try{
-      const {data} = await removeThread({
-        variables:{
-          threadId:id
+    try {
+      const { data } = await removeThread({
+        variables: {
+          threadId: id
         }
       })
       window.location.reload(false);
       // alert("it worked!")
-    }catch(error){
-        console.error(error)
-      }
+    } catch (error) {
+      console.error(error)
+    }
   }
 
   return (
@@ -88,19 +89,26 @@ export default function AllMessages({ threads }) {
               <ul role="list" className="-my-5 divide-y divide-gray-200">
                 {threads.map((thread, index) => (
                   <li key={index} className="py-4">
+                    <h2 hidden className="id" >{thread._id}</h2>
                     <div className="flex items-center space-x-4">
                       <div className="flex-1 min-w-0">
                         <p className="text-base font-medium text-gray-900 truncate">{thread.text}</p>
                       </div>
-                      <div>
-                        <button onClick={deleteThread}>DELETE</button>
-                        <button
-                          type="button"
-                          onClick={chat}
-                          className="inline-flex items-center shadow-sm px-2.5 py-0.5 border border-gray-300 text-sm leading-5 font-medium rounded-full text-gray-700 bg-slate-100 hover:bg-gray-50"
-                        >
-                          View
-                        </button>
+                      <div className='flex items-center'>
+                        <div className='grid grid-cols-2 divide-x-2'>
+                          <button
+                            type="button"
+                            onClick={chat}
+                            className="inline-flex items-center shadow-sm px-2.5 py-0.5 border border-gray-300 text-sm leading-5 font-medium rounded-full text-gray-700 bg-slate-100 hover:bg-gray-50"
+                          >
+                            View
+                          </button>
+                          <button
+                            onClick={deleteThread}
+                            className="text-red-600 ml-4">
+                            <TrashIcon className="ml-3 -mr-1 h-6 w-6" aria-hidden="true" />
+                          </button>
+                        </div>
                       </div>
                     </div>
                   </li>
