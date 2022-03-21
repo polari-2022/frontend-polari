@@ -62,7 +62,6 @@ export default function Profile({ attachment }) {
     // update state based on form input changes
     const handleChange = (event) => {
         const { name, value } = event.target;
-        console.log("formState", formState)
         if (name === "currentCity") {
             const newVal = value.toLowerCase();
 
