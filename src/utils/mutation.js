@@ -132,18 +132,14 @@ export const UPDATE_PROFILE = gql`
   }
 `;
 export const ADD_THREAD = gql`
-  mutation addThread($text:String, $date:DATE!,$user:ID, $match:ID){
-    addThread(text:$text, date:$date, user:$user, match:$match){
+  mutation addThread($text:String,$user:ID, $match:ID){
+    addThread(text:$text,  user:$user, match:$match){
       _id
       text
-      date
       user{
         _id
       }
       match{
-        _id
-      }
-      messages{
         _id
       }
     }
