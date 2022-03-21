@@ -11,6 +11,7 @@ import { setContext } from '@apollo/client/link/context';
 
 import Navbar from './components/NavBar/NavBar'
 import Homepage from './pages/Homepage'
+import Faq from './pages/Faq'
 import Attachments from './pages/Attachments'
 import Contact from './pages/Contact'
 import Team from './pages/Team'
@@ -58,6 +59,7 @@ function App() {
         <Routes>
           <Route path='/' element={<Homepage />} />
           <Route path='/attachment-styles' element={<Attachments />} />
+          <Route path='/faq' element={<Faq />} />
           <Route path='/contact-us' element={<Contact />} />
           <Route path='/our-team' element={<Team />} />
           <Route path='/login' element={<Login />} />
