@@ -52,6 +52,6 @@
     "postcss": "^8.4.8",
     "tailwindcss": "^3.0.23"
   },
-  "proxy": "http://localhost:3001",
-  "deploy proxy": "https://backend-polari.herokuapp.com/"
+  "local proxy": "http://localhost:3001",
+  "proxy": "https://backend-polari.herokuapp.com/"
 }
