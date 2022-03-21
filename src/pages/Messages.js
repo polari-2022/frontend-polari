@@ -20,7 +20,11 @@ export default function Message(){
 
 
     if (!threads.length) {
-        return <h3>No Threads Yet</h3>;
+        return (
+            <div className="mt-8 mb-20 text-center">
+                <h2 className="text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl">No Threads Yet</h2>
+            </div>
+        );
     }
     
     return(
