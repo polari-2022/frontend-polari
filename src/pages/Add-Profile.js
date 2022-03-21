@@ -183,9 +183,9 @@ export default function Profile({ attachment }) {
                 <div className="text-center">
                     <h2 className="text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl">Create Your Profile</h2>
                 </div>
-                <div className="mt-12">
 
-                    {/* Form */}
+                {/* Form */}
+                <div className="mt-12">
                     <form onSubmit={handleFormSubmit} action="#" method="POST" className="grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-8">
                         {/* First name */}
                         <div>
