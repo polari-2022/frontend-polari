@@ -1,24 +1,22 @@
+import React, { useState } from 'react';
 import { useQuery, useMutation } from '@apollo/client';
 import { TrashIcon } from '@heroicons/react/outline'
 import { REMOVE_THREAD } from '../../utils/mutation';
 import Auth from '../../utils/auth';
 
 export default function AllMessages({ threads }) {
+  let [selectedThread, setSelectedThread] = useState(0)
   const chat = (event) => {
     event.preventDefault()
     window.location.replace('/chat')
   }
   const [removeThread, { error }] = useMutation(REMOVE_THREAD)
-  const userId = Auth.getUser().data._id
-  let id;
-
   const deleteThread = async (event) => {
-    event.preventDefault()
-    id = document.querySelector('.id').innerHTML
+    // event.preventDefault()
     try {
       const { data } = await removeThread({
         variables: {
-          threadId: id
+          threadId: selectedThread
         }
       })
       window.location.reload(false);
@@ -87,7 +85,6 @@ export default function AllMessages({ threads }) {
               <ul role="list" className="-my-5 divide-y divide-gray-200">
                 {threads.map((thread, index) => (
                   <li key={index} className="py-4">
-                    <h2 hidden className="id" >{thread._id}</h2>
                     <div className="flex items-center space-x-4">
                       <div className="flex-1 min-w-0">
                         <p className="text-base font-medium text-gray-900 truncate">{thread.text}</p>
@@ -102,7 +99,10 @@ export default function AllMessages({ threads }) {
                             View
                           </button>
                           <button
-                            onClick={deleteThread}
+                            onClick={() =>{
+                              setSelectedThread(selectedThread = thread._id)
+                              deleteThread();
+                            }}
                             className="text-red-600 ml-4">
                             <TrashIcon className="ml-3 -mr-1 h-6 w-6" aria-hidden="true" />
                           </button>
