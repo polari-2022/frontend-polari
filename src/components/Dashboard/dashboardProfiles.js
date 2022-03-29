@@ -81,19 +81,13 @@ const DashboardProfiles = ({ profiles, title }) => {
       const location = attachmentStyleFilter.filter(profile =>profile.currentCity === userLocation)
       // finalMatchArray = attachmentStyleFilter
       finalMatchArray =location
-      // find out who the user seleted 
-      // console.log( userProfileID, userSingularInterest,userPluralIdentity,userAttachmentStyle,userLocation)
   }
-   Lovers();
-  // console.log("current", current)
+  Lovers();
+  // console.log(finalMatchArray)
   let currentProfile =finalMatchArray[current]
-// console.log("currentprofile", currentProfile)
-  // let currentProfileName =profiles[current].firstName
-  // let currentProfileID =profiles[current].user
-  // let currentProfileUserID = currentProfileID._id
-  // console.log("currentProfile", currentProfileID)
-  // console.log("user ID", userId)
-  const nextProfile = () => {
+
+  const nextProfile = (event) => {
+    event.preventDefault();
     setCurrent(current === length - 1 ? 0 : current + 1)
   }
   const token = Auth.loggedIn() ? Auth.getToken() : null;
@@ -112,9 +106,7 @@ const DashboardProfiles = ({ profiles, title }) => {
           match: currentProfileUserID
         }
         // Auth.login(token);
-
       })
-      // console.log("Data",data)
       // Navigate to the next step after POST
       await navigate(`/messages`);
       window.location.reload(false);

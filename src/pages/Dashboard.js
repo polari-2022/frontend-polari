@@ -9,6 +9,18 @@ const Dashboard = () => {
 
   const profiles = data?.profiles || [];
 
+    // fisher-yates(aka Knuth) Shuffle
+  function fisherYates(array){
+    for(let i = array.length - 1; i>0; i--){
+      const j = Math.floor(Math.random() * i)
+      const temp = array[i]
+      array[i] = array[j]
+      array[j] = temp 
+    }
+  }
+  const randomarray = [... profiles]
+  fisherYates(randomarray)
+
   return (
     <div>
       {Auth.loggedIn() ? (
@@ -17,7 +29,7 @@ const Dashboard = () => {
         <div>Loading...</div>
         ) : (
             <DashboardProfiles
-                profiles={profiles}
+                profiles={randomarray}
                 title="Matches"
             />
         )}
