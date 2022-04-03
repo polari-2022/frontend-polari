@@ -143,7 +143,7 @@ export default function Signup() {
 
                             <div className="flex flex-col">
                                 <div className="flex justify-evenly mb-4">
-                                    <span className={validLength ? "text-emerald-500" : "text-red-500"}>Valid Length</span>
+                                    <span className={validLength ? "text-emerald-500" : "text-red-500"}>8 Characters</span>
                                     <span className={hasNumber ? "text-emerald-500" : "text-red-500"}>Has a Number</span>
                                     <span className={upperCase ? "text-emerald-500" : "text-red-500"}>Upper Case</span>
                                 </div>
